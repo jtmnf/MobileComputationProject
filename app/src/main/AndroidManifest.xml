@@ -14,8 +14,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LoginActivity"
+            android:name="activities.LoginActivity"
             android:label="@string/title_activity_login">
+        </activity>
+        <activity
+            android:name=".activities.SplashscreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_splashscreen"
+            android:theme="@style/FullscreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="activities.RegisterActivity"
+            android:label="@string/title_activity_register">
         </activity>
     </application>
 
