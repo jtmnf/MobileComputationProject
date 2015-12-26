@@ -8,13 +8,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "worldinchat.db";
 
-    private static final String LOGIN_TABLE = "login";
-    private static final String LOGIN_USER = "username";
-    private static final String LOGIN_PASS = "password";
-
-    private static final String CHAT_TABLE = "chat";
-    private static final String CHAT_MESSAGE = "message";
-    private static final String CHAT_USER = "username";
+    private UserManager userManager;
+    private ChatManager chatManager;
 
     public DatabaseManager(Context context){
         super(context, DATABASE_NAME, null, 1);
@@ -23,6 +18,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         createDatabase(db);
+        userManager = new UserManager(this);
+        chatManager = new ChatManager(this);
     }
 
     @Override
@@ -33,13 +30,21 @@ public class DatabaseManager extends SQLiteOpenHelper {
     private void createDatabase(SQLiteDatabase db){
         try{
             db = SQLiteDatabase.openDatabase(DATABASE_NAME, null, SQLiteDatabase.OPEN_READONLY);
-        } catch (Exception e){
+            db.beginTransaction();
+
             // user table creation
-            db.execSQL("CREATE TABLE user ( user_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)");
+            db.execSQL("CREATE TABLE " + UserManager.USER + " ( " + UserManager.USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + UserManager.USERNAME + " TEXT, " + UserManager.PASSWORD + " TEXT)");
 
             // chat table creation
-            db.execSQL("CREATE TABLE chat ( message_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, message TEXT, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)");
+            db.execSQL("CREATE TABLE " + ChatManager.CHAT + " ( " + ChatManager.MESSAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + UserManager.USER_ID + " INTEGER, " + ChatManager.MESSAGE + " TEXT, " + ChatManager.TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP)");
 
+            db.setTransactionSuccessful();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            db.endTransaction();
         }
     }
 }
