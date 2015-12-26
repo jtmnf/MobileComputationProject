@@ -8,8 +8,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "worldinchat.db";
 
-    private UserManager userManager;
-    private ChatManager chatManager;
+    private UserTableManager userTableManager;
+    private ChatTableManager chatTableManager;
 
     public DatabaseManager(Context context){
         super(context, DATABASE_NAME, null, 1);
@@ -18,8 +18,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         createDatabase(db);
-        userManager = new UserManager(this);
-        chatManager = new ChatManager(this);
+        userTableManager = new UserTableManager(this);
+        chatTableManager = new ChatTableManager(this);
     }
 
     @Override
@@ -33,10 +33,10 @@ public class DatabaseManager extends SQLiteOpenHelper {
             db.beginTransaction();
 
             // user table creation
-            db.execSQL("CREATE TABLE " + UserManager.USER + " ( " + UserManager.USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + UserManager.USERNAME + " TEXT, " + UserManager.PASSWORD + " TEXT)");
+            db.execSQL("CREATE TABLE " + UserTableManager.USER + " ( " + UserTableManager.USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + UserTableManager.USERNAME + " TEXT, " + UserTableManager.PASSWORD + " TEXT)");
 
             // chat table creation
-            db.execSQL("CREATE TABLE " + ChatManager.CHAT + " ( " + ChatManager.MESSAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + UserManager.USER_ID + " INTEGER, " + ChatManager.MESSAGE + " TEXT, " + ChatManager.TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP)");
+            db.execSQL("CREATE TABLE " + ChatTableManager.CHAT + " ( " + ChatTableManager.MESSAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + UserTableManager.USER_ID + " INTEGER, " + ChatTableManager.MESSAGE + " TEXT, " + ChatTableManager.TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP)");
 
             db.setTransactionSuccessful();
 
