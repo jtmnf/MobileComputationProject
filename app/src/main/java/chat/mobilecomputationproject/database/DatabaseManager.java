@@ -34,8 +34,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
         try{
             db = SQLiteDatabase.openDatabase(DATABASE_NAME, null, SQLiteDatabase.OPEN_READONLY);
         } catch (Exception e){
-            //TODO - create tables here
-            // db.execSQL("create table " + TABLE_NAME + "(" + TITLE + " text, " + VALUE + " text)");
+            // user table creation
+            db.execSQL("CREATE TABLE user ( user_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)");
+
+            // chat table creation
+            db.execSQL("CREATE TABLE chat ( message_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, message TEXT, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)");
 
         }
     }
