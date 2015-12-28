@@ -6,10 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import chat.mobilecomputationproject.activities.ItemFragment.OnListFragmentInteractionListener;
-import chat.mobilecomputationproject.activities.dummy.DummyContent.DummyItem;
-
 import java.util.List;
+
+import chat.mobilecomputationproject.R;
+import chat.mobilecomputationproject.activities.ChatRoomItemFragment.OnListFragmentInteractionListener;
+import chat.mobilecomputationproject.activities.dummy.DummyContent.DummyItem;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
@@ -29,7 +30,7 @@ public class MyChatRoomItemRecyclerViewAdapter extends RecyclerView.Adapter<MyCh
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_item, parent, false);
+                .inflate(R.layout.fragment_chatroomitem, parent, false);
         return new ViewHolder(view);
     }
 
