@@ -1,4 +1,4 @@
-package chat.mobilecomputationproject.activities;
+package chat.mobilecomputationproject.activities.login_register;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

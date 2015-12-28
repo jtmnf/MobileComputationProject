@@ -10,5 +10,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context="chat.mobilecomputationproject.activities.ChatRoomItemFragment"
+    tools:context=".activities.chat_room.ChatRoomItemFragment"
     tools:listitem="@layout/fragment_chatroomitem"/>

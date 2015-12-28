@@ -1,4 +1,4 @@
-package chat.mobilecomputationproject.activities;
+package chat.mobilecomputationproject.activities.chat_room;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,10 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import chat.mobilecomputationproject.R;
-import chat.mobilecomputationproject.activities.dummy.DummyContent;
-import chat.mobilecomputationproject.activities.dummy.DummyContent.DummyItem;
-
-import java.util.List;
+import chat.mobilecomputationproject.activities.chat_room.dummy.DummyContent;
+import chat.mobilecomputationproject.activities.chat_room.dummy.DummyContent.DummyItem;
 
 /**
  * A fragment representing a list of Items.

@@ -1,4 +1,4 @@
-package chat.mobilecomputationproject.activities;
+package chat.mobilecomputationproject.activities.chat_room;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,8 +9,8 @@ import android.widget.TextView;
 import java.util.List;
 
 import chat.mobilecomputationproject.R;
-import chat.mobilecomputationproject.activities.ChatRoomItemFragment.OnListFragmentInteractionListener;
-import chat.mobilecomputationproject.activities.dummy.DummyContent.DummyItem;
+import chat.mobilecomputationproject.activities.chat_room.ChatRoomItemFragment.OnListFragmentInteractionListener;
+import chat.mobilecomputationproject.activities.chat_room.dummy.DummyContent.DummyItem;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
