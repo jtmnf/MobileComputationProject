@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -28,7 +29,8 @@ public class SplashscreenActivity extends AppCompatActivity {
     {
         super.onResume();
         //Wait a few seconds before checking for an internet connection and moving on to the chatroom selector activity
-        
+
+        final Context context = this;
 
         new Timer().schedule(new TimerTask() {
             @Override
@@ -37,7 +39,7 @@ public class SplashscreenActivity extends AppCompatActivity {
                 if (isNetworkAvailable()) {
                     goToChatRoomActivity();
                 } else {
-
+                    Toast.makeText(context, R.string.no_internet_connection, Toast.LENGTH_LONG).show();
                 }
 
             }
