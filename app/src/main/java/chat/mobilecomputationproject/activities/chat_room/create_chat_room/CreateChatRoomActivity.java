@@ -1,4 +1,4 @@
-package chat.mobilecomputationproject.activities.chat_room;
+package chat.mobilecomputationproject.activities.chat_room.create_chat_room;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

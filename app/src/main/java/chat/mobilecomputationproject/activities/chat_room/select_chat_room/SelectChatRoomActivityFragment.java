@@ -1,4 +1,4 @@
-package chat.mobilecomputationproject.activities.chat_room;
+package chat.mobilecomputationproject.activities.chat_room.select_chat_room;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -11,14 +11,14 @@ import chat.mobilecomputationproject.R;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class ChatRoomActivityFragment extends Fragment {
+public class SelectChatRoomActivityFragment extends Fragment {
 
-    public ChatRoomActivityFragment() {
+    public SelectChatRoomActivityFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_chat_room, container, false);
+        return inflater.inflate(R.layout.fragment_select_chat_room, container, false);
     }
 }

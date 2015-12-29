@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.RecyclerView
     android:id="@+id/list"
-    android:name="chat.mobilecomputationproject.activities.ChatRoomItemFragment"
+    android:name="chat.mobilecomputationproject.activities.SelectChatRoomItemFragment"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,5 +10,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".activities.chat_room.ChatRoomItemFragment"
-    tools:listitem="@layout/fragment_chatroomitem"/>
+    tools:context=".activities.chat_room.select_chat_room.SelectChatRoomItemFragment"
+    tools:listitem="@layout/fragment_select_chat_room_item"/>

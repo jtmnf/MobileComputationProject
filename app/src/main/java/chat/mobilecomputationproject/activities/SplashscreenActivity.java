@@ -12,7 +12,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import chat.mobilecomputationproject.R;
-import chat.mobilecomputationproject.activities.chat_room.ChatRoomActivity;
+import chat.mobilecomputationproject.activities.chat_room.select_chat_room.SelectChatRoomActivity;
 
 public class SplashscreenActivity extends AppCompatActivity {
 
@@ -30,24 +30,22 @@ public class SplashscreenActivity extends AppCompatActivity {
         super.onResume();
         //Wait a few seconds before checking for an internet connection and moving on to the chatroom selector activity
 
-        final Context context = this;
-
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
 
                 if (isNetworkAvailable()) {
-                    goToChatRoomActivity();
+                    goToSelectChatRoomActivity();
                 } else {
-                    Toast.makeText(context, R.string.no_internet_connection, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_LONG).show();
                 }
 
             }
         }, SPLASHSCREEN_DELAY);
     }
 
-    private void goToChatRoomActivity() {
-        final Intent intent = new Intent(this, ChatRoomActivity.class);
+    private void goToSelectChatRoomActivity() {
+        final Intent intent = new Intent(this, SelectChatRoomActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         startActivity(intent);

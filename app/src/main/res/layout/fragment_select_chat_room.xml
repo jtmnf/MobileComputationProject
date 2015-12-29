@@ -6,8 +6,8 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
-                tools:context="chat.mobilecomputationproject.activities.chat_room.ChatRoomActivityFragment"
-                tools:showIn="@layout/activity_chat_room">
+                tools:context=".activities.chat_room.select_chat_room.SelectChatRoomActivityFragment"
+                tools:showIn="@layout/activity_select_chat_room">
 
 
 </RelativeLayout>

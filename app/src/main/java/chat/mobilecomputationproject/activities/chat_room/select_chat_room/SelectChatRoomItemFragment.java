@@ -1,4 +1,4 @@
-package chat.mobilecomputationproject.activities.chat_room;
+package chat.mobilecomputationproject.activities.chat_room.select_chat_room;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import chat.mobilecomputationproject.R;
-import chat.mobilecomputationproject.activities.chat_room.dummy.DummyContent;
-import chat.mobilecomputationproject.activities.chat_room.dummy.DummyContent.DummyItem;
+import chat.mobilecomputationproject.activities.chat_room.select_chat_room.dummy.DummyContent;
+import chat.mobilecomputationproject.activities.chat_room.select_chat_room.dummy.DummyContent.DummyItem;
 
 /**
  * A fragment representing a list of Items.
@@ -20,7 +20,7 @@ import chat.mobilecomputationproject.activities.chat_room.dummy.DummyContent.Dum
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class ChatRoomItemFragment extends Fragment {
+public class SelectChatRoomItemFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -32,13 +32,13 @@ public class ChatRoomItemFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ChatRoomItemFragment() {
+    public SelectChatRoomItemFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static ChatRoomItemFragment newInstance(int columnCount) {
-        ChatRoomItemFragment fragment = new ChatRoomItemFragment();
+    public static SelectChatRoomItemFragment newInstance(int columnCount) {
+        SelectChatRoomItemFragment fragment = new SelectChatRoomItemFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -68,7 +68,7 @@ public class ChatRoomItemFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyChatRoomItemRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new MySelectChatRoomItemRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
     }

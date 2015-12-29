@@ -32,11 +32,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.chat_room.ChatRoomActivity"
-            android:label="@string/title_activity_chat_room"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".activities.chat_room.select_chat_room.SelectChatRoomActivity"
+            android:label="@string/title_activity_select_chat_room">
         </activity>
-        <activity android:name=".activities.chat_room.CreateChatRoomActivity">
+        <activity android:name=".activities.chat_room.create_chat_room.CreateChatRoomActivity"
+            android:label="@string/title_activity_create_chat_room">
         </activity>
     </application>
 

@@ -1,4 +1,4 @@
-package chat.mobilecomputationproject.activities.chat_room;
+package chat.mobilecomputationproject.activities.chat_room.select_chat_room;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,20 +9,19 @@ import android.widget.TextView;
 import java.util.List;
 
 import chat.mobilecomputationproject.R;
-import chat.mobilecomputationproject.activities.chat_room.ChatRoomItemFragment.OnListFragmentInteractionListener;
-import chat.mobilecomputationproject.activities.chat_room.dummy.DummyContent.DummyItem;
+import chat.mobilecomputationproject.activities.chat_room.select_chat_room.dummy.DummyContent.DummyItem;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
+ * specified {@link SelectChatRoomItemFragment.OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyChatRoomItemRecyclerViewAdapter extends RecyclerView.Adapter<MyChatRoomItemRecyclerViewAdapter.ViewHolder> {
+public class MySelectChatRoomItemRecyclerViewAdapter extends RecyclerView.Adapter<MySelectChatRoomItemRecyclerViewAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private final SelectChatRoomItemFragment.OnListFragmentInteractionListener mListener;
 
-    public MyChatRoomItemRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public MySelectChatRoomItemRecyclerViewAdapter(List<DummyItem> items, SelectChatRoomItemFragment.OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
