@@ -29,7 +29,7 @@ public class MySelectChatRoomItemRecyclerViewAdapter extends RecyclerView.Adapte
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_chatroomitem, parent, false);
+                .inflate(R.layout.fragment_select_chat_room_item, parent, false);
         return new ViewHolder(view);
     }
 
