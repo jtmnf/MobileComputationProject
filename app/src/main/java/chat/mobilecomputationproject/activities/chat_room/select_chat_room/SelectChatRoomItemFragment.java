@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import chat.mobilecomputationproject.R;
 import chat.mobilecomputationproject.activities.chat_room.select_chat_room.dummy.DummyContent;
-import chat.mobilecomputationproject.activities.chat_room.select_chat_room.dummy.DummyContent.DummyItem;
+import chat.mobilecomputationproject.database.data_objects.ChatRoom;
 
 /**
  * A fragment representing a list of Items.
@@ -103,6 +103,6 @@ public class SelectChatRoomItemFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(ChatRoom item);
     }
 }

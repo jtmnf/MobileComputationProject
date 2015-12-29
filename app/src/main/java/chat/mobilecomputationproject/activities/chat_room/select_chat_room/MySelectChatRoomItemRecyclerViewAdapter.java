@@ -9,19 +9,19 @@ import android.widget.TextView;
 import java.util.List;
 
 import chat.mobilecomputationproject.R;
-import chat.mobilecomputationproject.activities.chat_room.select_chat_room.dummy.DummyContent.DummyItem;
+import chat.mobilecomputationproject.database.data_objects.ChatRoom;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link ChatRoom} and makes a call to the
  * specified {@link SelectChatRoomItemFragment.OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MySelectChatRoomItemRecyclerViewAdapter extends RecyclerView.Adapter<MySelectChatRoomItemRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<ChatRoom> mValues;
     private final SelectChatRoomItemFragment.OnListFragmentInteractionListener mListener;
 
-    public MySelectChatRoomItemRecyclerViewAdapter(List<DummyItem> items, SelectChatRoomItemFragment.OnListFragmentInteractionListener listener) {
+    public MySelectChatRoomItemRecyclerViewAdapter(List<ChatRoom> items, SelectChatRoomItemFragment.OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -36,8 +36,8 @@ public class MySelectChatRoomItemRecyclerViewAdapter extends RecyclerView.Adapte
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mIdView.setText(mValues.get(position).getName());
+        holder.mContentView.setText(mValues.get(position).getDescription());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +60,7 @@ public class MySelectChatRoomItemRecyclerViewAdapter extends RecyclerView.Adapte
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public ChatRoom mItem;
 
         public ViewHolder(View view) {
             super(view);
