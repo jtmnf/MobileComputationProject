@@ -1,4 +1,4 @@
-package chat.mobilecomputationproject.database;
+package chat.mobilecomputationproject.database.managers;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

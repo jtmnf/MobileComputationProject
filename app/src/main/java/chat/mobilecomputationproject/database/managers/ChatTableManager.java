@@ -1,4 +1,4 @@
-package chat.mobilecomputationproject.database;
+package chat.mobilecomputationproject.database.managers;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
@@ -6,24 +6,24 @@ import android.database.sqlite.SQLiteDatabase;
 /**
  * Created by aclima on 26/12/15.
  */
-public class UserTableManager {
+public class ChatTableManager {
 
     // table name
-    public static final String USER = "user";
+    public static final String CHAT = "chat";
 
     // table attributes
+    public static final String MESSAGE_ID = "message_id";
     public static final String USER_ID = "user_id";
-    public static final String USERNAME = "username";
-    public static final String PASSWORD = "password";
-
+    public static final String MESSAGE = "message";
+    public static final String TIMESTAMP = "timestamp";
 
     private DatabaseManager dbm;
 
-    UserTableManager(DatabaseManager dbm) {
+    ChatTableManager(DatabaseManager dbm) {
         this.dbm = dbm;
     }
 
-    public boolean addUser(String username, String password){
+    public boolean addChatMessage(Integer user_id, String message){
 
         boolean success;
         SQLiteDatabase db = dbm.getWritableDatabase();
@@ -32,9 +32,9 @@ public class UserTableManager {
             db.beginTransaction();
 
             ContentValues cv=new ContentValues();
-            cv.put(USERNAME, username);
-            cv.put(PASSWORD, password);
-            db.insert(USER, USERNAME, cv);
+            cv.put(USER_ID, user_id);
+            cv.put(MESSAGE, message);
+            db.insert(CHAT, MESSAGE, cv);
 
             db.setTransactionSuccessful();
             success = true;
