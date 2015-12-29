@@ -33,7 +33,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
             db.beginTransaction();
 
             // user table creation
-            db.execSQL("CREATE TABLE " + UserTableManager.USER + " ( " + UserTableManager.USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + UserTableManager.USERNAME + " TEXT, " + UserTableManager.PASSWORD + " TEXT)");
+            db.execSQL("CREATE TABLE " + UserTableManager.USER + " ( " + UserTableManager.USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + UserTableManager.USERNAME + " TEXT, " + UserTableManager.PASSWORD_HASH + " TEXT)");
 
             // chat table creation
             db.execSQL("CREATE TABLE " + ChatTableManager.CHAT + " ( " + ChatTableManager.MESSAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + UserTableManager.USER_ID + " INTEGER, " + ChatTableManager.MESSAGE + " TEXT, " + ChatTableManager.TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP)");
