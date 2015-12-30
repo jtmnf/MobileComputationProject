@@ -1,8 +1,9 @@
-package chat.mobilecomputationproject.activities.login_register;
+package chat.mobilecomputationproject.activities.register;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,13 +13,13 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import chat.mobilecomputationproject.R;
+import chat.mobilecomputationproject.activities.chat_room.ChatRoomActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -29,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
     private UserRegisterTask mAuthTask = null;
 
     // UI references.
-    private AutoCompleteTextView mUsernameView;
+    private EditText mUsernameView;
     private EditText mPasswordView;
     private EditText mPasswordRetypeView;
     private View mProgressView;
@@ -40,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         // Set up the register form.
-        mUsernameView = (AutoCompleteTextView) findViewById(R.id.username);
+        mUsernameView = (EditText) findViewById(R.id.username);
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordRetypeView = (EditText) findViewById(R.id.password_retype);
@@ -141,12 +142,22 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean isUsernameValid(String username) {
         //TODO: Replace this with your own logic
-        return username.length() > 0;
+        return username.length() > 3;
     }
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return true;
+
+        /*
+        boolean hasMinLength = (password.length() > 4);
+        boolean hasUppercase = password.matches("[A-Z]");
+        boolean hasLowercase = password.matches("[a-z]");
+        boolean hasNumber = password.matches("\\d");
+        boolean hasSpecialChar = password.matches("[^a-zA-Z0-9 ]");
+
+        return (hasMinLength && hasUppercase && hasLowercase && hasNumber && hasSpecialChar);
+        */
     }
 
     /**
@@ -221,6 +232,7 @@ public class RegisterActivity extends AppCompatActivity {
             showProgress(false);
 
             if (success) {
+                startActivity(new Intent(getApplicationContext(), ChatRoomActivity.class));
                 finish();
             } else {
                 Toast.makeText(getApplicationContext(), getString(R.string.error_registering_account), Toast.LENGTH_LONG).show();

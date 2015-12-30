@@ -3,6 +3,7 @@ package chat.mobilecomputationproject.activities.create_chat_room;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import chat.mobilecomputationproject.R;
+import chat.mobilecomputationproject.activities.chat_room.ChatRoomActivity;
 
 public class CreateChatRoomActivity extends AppCompatActivity{
 
@@ -184,6 +186,8 @@ public class CreateChatRoomActivity extends AppCompatActivity{
             showProgress(false);
 
             if (success) {
+                // go to login screen for this chat room
+                startActivity(new Intent(getApplicationContext(), ChatRoomActivity.class));
                 finish();
             } else {
                 Toast.makeText(getApplicationContext(), getString(R.string.error_creating_chat_room), Toast.LENGTH_LONG).show();

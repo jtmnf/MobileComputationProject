@@ -1,8 +1,9 @@
-package chat.mobilecomputationproject.activities.login_register;
+package chat.mobilecomputationproject.activities.login;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,12 +13,13 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import chat.mobilecomputationproject.R;
+import chat.mobilecomputationproject.activities.chat_room.ChatRoomActivity;
+import chat.mobilecomputationproject.activities.register.RegisterActivity;
 
 /**
  * A login screen that offers login via username/password.
@@ -30,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private AutoCompleteTextView mUsernameView;
+    private EditText mUsernameView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
@@ -40,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
-        mUsernameView = (AutoCompleteTextView) findViewById(R.id.username);
+        mUsernameView = (EditText) findViewById(R.id.username);
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -59,6 +61,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 attemptLogin();
+            }
+        });
+
+        Button mRegisterButton = (Button) findViewById(R.id.sign_in_button);
+        mRegisterButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
             }
         });
 
@@ -93,20 +103,11 @@ public class LoginActivity extends AppCompatActivity {
             mUsernameView.setError(getString(R.string.error_field_required));
             focusView = mUsernameView;
             cancel = true;
-        } else if (!isUsernameValid(username)) {
-            mUsernameView.setError(getString(R.string.error_invalid_username));
-            focusView = mUsernameView;
-            cancel = true;
         }
 
         // Check for a valid password
         else if (TextUtils.isEmpty(password)){
             mPasswordView.setError(getString(R.string.error_field_required));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-        else if (!isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
         }
@@ -122,16 +123,6 @@ public class LoginActivity extends AppCompatActivity {
             mAuthTask = new UserLoginTask(username, password);
             mAuthTask.execute((Void) null);
         }
-    }
-
-    private boolean isUsernameValid(String username) {
-        //TODO: Replace this with your own logic
-        return username.length() > 0;
-    }
-
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
     }
 
     /**
@@ -195,7 +186,7 @@ public class LoginActivity extends AppCompatActivity {
                 return false;
             }
 
-            // TODO: register the new account here.
+            // TODO: login the account here.
 
             return true;
         }
@@ -206,6 +197,8 @@ public class LoginActivity extends AppCompatActivity {
             showProgress(false);
 
             if (success) {
+                // go to the chat room
+                startActivity(new Intent(getApplicationContext(), ChatRoomActivity.class));
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
