@@ -33,8 +33,8 @@ public class SelectChatRoomListFragment extends ListFragment {
         chatRooms = new DummyContent().getItems();
 
         ChatRoomAdapter adapter = new ChatRoomAdapter(getActivity(), R.layout.select_chat_room_item, chatRooms);
-
         setListAdapter(adapter);
+
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
