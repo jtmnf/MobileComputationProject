@@ -3,12 +3,12 @@ package chat.mobilecomputationproject.database.data_objects;
 /**
  * Created by aclima on 29/12/15.
  */
-public class ChatRoom {
+public class Chatroom {
     private Integer id;
     private String name;
     private String description;
 
-    public ChatRoom(Integer id, String name, String description) {
+    public Chatroom(Integer id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
