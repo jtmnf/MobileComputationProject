@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        Button mRegisterButton = (Button) findViewById(R.id.sign_in_button);
+        Button mRegisterButton = (Button) findViewById(R.id.register_button);
         mRegisterButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -199,7 +199,6 @@ public class LoginActivity extends AppCompatActivity {
             if (success) {
                 // go to the chat room
                 startActivity(new Intent(getApplicationContext(), ChatRoomActivity.class));
-                finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
