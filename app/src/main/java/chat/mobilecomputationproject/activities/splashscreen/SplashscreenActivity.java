@@ -1,4 +1,4 @@
-package chat.mobilecomputationproject.activities;
+package chat.mobilecomputationproject.activities.splashscreen;
 
 import android.content.Context;
 import android.content.Intent;

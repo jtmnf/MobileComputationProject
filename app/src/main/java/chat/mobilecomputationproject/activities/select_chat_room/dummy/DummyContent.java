@@ -39,4 +39,8 @@ public class DummyContent {
         }
         return builder.toString();
     }
+
+    public List<ChatRoom> getItems(){
+        return ITEMS;
+    }
 }
