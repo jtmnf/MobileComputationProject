@@ -1,4 +1,4 @@
-package chat.mobilecomputationproject.activities.chat_room.create_chat_room;
+package chat.mobilecomputationproject.activities.create_chat_room;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

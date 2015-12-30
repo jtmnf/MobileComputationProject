@@ -1,4 +1,4 @@
-package chat.mobilecomputationproject.activities.chat_room.select_chat_room;
+package chat.mobilecomputationproject.activities.select_chat_room;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import chat.mobilecomputationproject.R;
-import chat.mobilecomputationproject.activities.chat_room.select_chat_room.dummy.DummyContent;
+import chat.mobilecomputationproject.activities.select_chat_room.dummy.DummyContent;
 import chat.mobilecomputationproject.database.data_objects.ChatRoom;
 
 /**

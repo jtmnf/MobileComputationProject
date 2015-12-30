@@ -1,4 +1,4 @@
-package chat.mobilecomputationproject.activities.chat_room.select_chat_room;
+package chat.mobilecomputationproject.activities.select_chat_room;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

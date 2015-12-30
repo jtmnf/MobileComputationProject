@@ -1,4 +1,4 @@
-package chat.mobilecomputationproject.activities.chat_room.select_chat_room.dummy;
+package chat.mobilecomputationproject.activities.select_chat_room.dummy;
 
 import java.util.ArrayList;
 import java.util.List;

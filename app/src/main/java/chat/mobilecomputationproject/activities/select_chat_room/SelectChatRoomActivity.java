@@ -1,4 +1,4 @@
-package chat.mobilecomputationproject.activities.chat_room.select_chat_room;
+package chat.mobilecomputationproject.activities.select_chat_room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import chat.mobilecomputationproject.R;
-import chat.mobilecomputationproject.activities.chat_room.create_chat_room.CreateChatRoomActivity;
+import chat.mobilecomputationproject.activities.create_chat_room.CreateChatRoomActivity;
 
 public class SelectChatRoomActivity extends AppCompatActivity {
 

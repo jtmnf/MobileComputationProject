@@ -12,7 +12,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import chat.mobilecomputationproject.R;
-import chat.mobilecomputationproject.activities.chat_room.select_chat_room.SelectChatRoomActivity;
+import chat.mobilecomputationproject.activities.select_chat_room.SelectChatRoomActivity;
 
 public class SplashscreenActivity extends AppCompatActivity {
 
