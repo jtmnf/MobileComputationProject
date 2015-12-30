@@ -1,8 +1,8 @@
 package chat.mobilecomputationproject.activities.select_chat_room;
 
-import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +19,6 @@ public class SelectChatRoomListFragment extends ListFragment {
 
     List<ChatRoom> chatRooms;
 
-    public SelectChatRoomListFragment() {
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -35,7 +32,7 @@ public class SelectChatRoomListFragment extends ListFragment {
         // TODO: get the info here
         chatRooms = new DummyContent().getItems();
 
-        ChatRoomAdapter adapter = new ChatRoomAdapter(getActivity().getApplicationContext(), R.layout.select_chat_room_item, chatRooms);
+        ChatRoomAdapter adapter = new ChatRoomAdapter(getActivity(), R.layout.select_chat_room_item, chatRooms);
 
         setListAdapter(adapter);
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
