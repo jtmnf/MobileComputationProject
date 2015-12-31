@@ -31,7 +31,7 @@ public class ChatTableManager {
         try {
             db.beginTransaction();
 
-            ContentValues cv=new ContentValues();
+            ContentValues cv = new ContentValues();
             cv.put(USER_ID, user_id);
             cv.put(MESSAGE, message);
             db.insert(CHAT, MESSAGE, cv);

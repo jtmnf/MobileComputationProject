@@ -31,7 +31,7 @@ public class UserTableManager {
         try {
             db.beginTransaction();
 
-            ContentValues cv=new ContentValues();
+            ContentValues cv = new ContentValues();
             cv.put(USERNAME, username);
             cv.put(PASSWORD_HASH, password_hash);
             db.insert(USER, USERNAME, cv);
