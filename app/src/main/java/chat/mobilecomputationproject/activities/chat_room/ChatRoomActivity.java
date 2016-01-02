@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import chat.mobilecomputationproject.R;
+import chat.mobilecomputationproject.utilities.MessagingSender;
 
 public class ChatRoomActivity extends AppCompatActivity {
 
@@ -23,11 +24,14 @@ public class ChatRoomActivity extends AppCompatActivity {
     private Button send;
     private List<ChatMessage> msg= new ArrayList<ChatMessage>();
     private boolean mySide = false;
+    private MessagingSender messagingSender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
+
+        messagingSender = new MessagingSender();
 
         //buscar componentes graficos
         send = (Button) findViewById(R.id.btn);
@@ -70,10 +74,14 @@ public class ChatRoomActivity extends AppCompatActivity {
     }
 
     private boolean sendChatMessage() {
-        adp.add(new ChatMessage(mySide,chatText.getText().toString()));
+        String message = chatText.getText().toString();
+
+        adp.add(new ChatMessage(mySide, message));
         chatText.setText("");
 
         mySide = !mySide;
+
+        messagingSender.sendMessage(message);
 
         return true;
     }

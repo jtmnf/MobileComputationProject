@@ -12,7 +12,7 @@ import org.apache.commons.io.IOUtils;
 
 public class MessagingSender {
 
-    private static String API_KEY = "null";
+    private static String API_KEY = "AIzaSyBbzKKCuyJCm4DEM1PWnrCbKtmlC2sNMmE";
 
     public void sendMessage(String message) {
         try {
