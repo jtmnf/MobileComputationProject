@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import chat.mobilecomputationproject.R;
 import chat.mobilecomputationproject.activities.chat_room.ChatRoomActivity;
+import chat.mobilecomputationproject.database.data_objects.ChatRoom;
 
 public class CreateChatRoomActivity extends AppCompatActivity{
 
@@ -106,12 +107,10 @@ public class CreateChatRoomActivity extends AppCompatActivity{
     }
 
     private boolean isNameValid(String name) {
-        //TODO: Replace this with your own logic
         return name.length() > 0;
     }
 
     private boolean isDescriptionValid(String description) {
-        //TODO: Replace this with your own logic
         return description.length() > 0;
     }
 
@@ -158,6 +157,7 @@ public class CreateChatRoomActivity extends AppCompatActivity{
 
         private final String mName;
         private final String mDescription;
+        private ChatRoom chatRoom;
 
         CreateChatRoomTask(String name, String description) {
             mName = name;
@@ -166,16 +166,9 @@ public class CreateChatRoomActivity extends AppCompatActivity{
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
 
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-            // TODO: register the new chat room here.
+            // register the new chat room
+            chatRoom = new ChatRoom(System.nanoTime(), mName, mDescription);
 
             return true;
         }
@@ -187,7 +180,9 @@ public class CreateChatRoomActivity extends AppCompatActivity{
 
             if (success) {
                 // go to login screen for this chat room
-                startActivity(new Intent(getApplicationContext(), ChatRoomActivity.class));
+                Intent intent = new Intent(getApplicationContext(), ChatRoomActivity.class);
+                intent.putExtra("" + ChatRoom.class, chatRoom);
+                startActivity(intent);
                 finish();
             } else {
                 Toast.makeText(getApplicationContext(), getString(R.string.error_creating_chat_room), Toast.LENGTH_LONG).show();

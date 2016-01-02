@@ -14,8 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import chat.mobilecomputationproject.R;
+import chat.mobilecomputationproject.database.data_objects.ChatRoom;
 
 public class ChatRoomActivity extends AppCompatActivity {
+
+    private ChatRoom chatRoom;
 
     private ChatArrayAdapter adp;
     private ListView list;
@@ -28,6 +31,8 @@ public class ChatRoomActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
+
+        chatRoom = (ChatRoom) getIntent().getSerializableExtra("" + ChatRoom.class);
 
         //buscar componentes graficos
         send = (Button) findViewById(R.id.btn);
