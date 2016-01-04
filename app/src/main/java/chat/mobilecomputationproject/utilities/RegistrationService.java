@@ -51,15 +51,16 @@ public class RegistrationService extends IntentService {
             // are local.
             // R.string.gcm_defaultSenderId (the Sender ID) is typically derived from google-services.json.
             // See https://developers.google.com/cloud-messaging/android/start for details on this file.
+
             // [START get_token]
             InstanceID instanceID = InstanceID.getInstance(this);
-            String token = instanceID.getToken(getString(R.strin), GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
+            String token = instanceID.getToken("577694608281", GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
             // [END get_token]
 
             Log.i(TAG, "GCM Registration Token: " + token);
 
             // Subscribe to topic channels
-            subscribeTopics(token);
+            //subscribeTopics(token);
 
             // You should store a boolean that indicates whether the generated token has been
             // sent to your server. If the boolean is false, send the token to your server,

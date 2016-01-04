@@ -45,11 +45,10 @@ public class MessagingSender {
             outputStream.write(jGcmData.toString(). getBytes());
 
             // Read GCM response.
-            InputStream inputStream = conn.getInputStream();
-            String resp = IOUtils.toString(inputStream);
-            System.out.println(resp);
-            System.out.println("Check your device/emulator for notification or logcat for " +
-                    "confirmation of the receipt of the GCM message.");
+            //InputStream inputStream = conn.getInputStream();
+            //String resp = IOUtils.toString(inputStream);
+            //System.out.println(resp);
+            //System.out.println("Check your device/emulator for notification or logcat for confirmation of the receipt of the GCM message.");
         } catch (JSONException e) {
             //TODO
         } catch (IOException e){

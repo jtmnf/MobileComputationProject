@@ -2,9 +2,6 @@ package chat.mobilecomputationproject.database.data_objects;
 
 import java.io.Serializable;
 
-/**
- * Created by aclima on 29/12/15.
- */
 public class ChatRoom implements Serializable{
     private long id;
     private String name;

@@ -19,6 +19,8 @@ package chat.mobilecomputationproject.utilities;
 import android.os.Bundle;
 import com.google.android.gms.gcm.GcmListenerService;
 
+import chat.mobilecomputationproject.activities.chat_room.ChatRoomActivity;
+
 public class MessagingListener extends GcmListenerService {
 
     /**
@@ -34,17 +36,17 @@ public class MessagingListener extends GcmListenerService {
 
         //TODO
         //We can take care of the message here!
-        if (from.startsWith("/topics/")) {
-            // message received from some topic.
-        } else {
-            // normal downstream message.
-        }
+
 
         /**
          * Production applications would usually process the message here.
          * Eg: - Syncing with server.
          *     - Store message in local database.
-         *     - Update UI.
+         *     - Update UI.if (from.startsWith("/topics/")) {
+         // message received from some topic.
+         } else {
+         // normal downstream message.
+         }
          */
 
         sendNotification(message);
@@ -54,6 +56,6 @@ public class MessagingListener extends GcmListenerService {
      * Show a notification of the received GCM message.
      */
     private void sendNotification(String message) {
-
+        ChatRoomActivity.receiveMessage()
     }
 }
