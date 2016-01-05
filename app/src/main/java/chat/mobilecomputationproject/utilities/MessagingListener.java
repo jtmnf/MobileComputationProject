@@ -17,11 +17,18 @@
 package chat.mobilecomputationproject.utilities;
 
 import android.os.Bundle;
+
 import com.google.android.gms.gcm.GcmListenerService;
 
 import chat.mobilecomputationproject.activities.chat_room.ChatRoomActivity;
 
 public class MessagingListener extends GcmListenerService {
+
+    private ChatRoomActivity chatRoomActivity;
+
+    public MessagingListener(ChatRoomActivity chatRoomActivity) {
+        this.chatRoomActivity = chatRoomActivity;
+    }
 
     /**
      * Called when message is received.
@@ -56,6 +63,6 @@ public class MessagingListener extends GcmListenerService {
      * Show a notification of the received GCM message.
      */
     private void sendNotification(String message) {
-        ChatRoomActivity.receiveMessage()
+        chatRoomActivity.receiveMessage(message);
     }
 }

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import chat.mobilecomputationproject.R;
+import chat.mobilecomputationproject.utilities.MessagingListener;
 import chat.mobilecomputationproject.utilities.MessagingSender;
 import chat.mobilecomputationproject.database.data_objects.ChatRoom;
 
@@ -27,7 +28,10 @@ public class ChatRoomActivity extends AppCompatActivity {
     private Button send;
     private List<ChatMessage> msg= new ArrayList<ChatMessage>();
     private boolean mySide = false;
+
+    // Messaging Handlers
     private MessagingSender messagingSender;
+    private MessagingListener messagingListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat_room);
 
         messagingSender = new MessagingSender();
+        messagingListener = new MessagingListener(this);
 
 		chatRoom = (ChatRoom) getIntent().getSerializableExtra("" + ChatRoom.class);
 
@@ -89,5 +94,9 @@ public class ChatRoomActivity extends AppCompatActivity {
         messagingSender.sendMessage(message);
 
         return true;
+    }
+
+    public void receiveMessage(String message){
+        // TODO: implement receiving logic here
     }
 }
