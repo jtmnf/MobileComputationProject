@@ -2,6 +2,7 @@ package chat.mobilecomputationproject.database.managers;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 /**
  * Created by aclima on 26/12/15.
@@ -13,7 +14,8 @@ public class ChatTableManager {
 
     // table attributes
     public static final String MESSAGE_ID = "message_id";
-    public static final String USER_ID = "user_id";
+    public static final String USER_NAME = "user_name";
+    public static final String CHAT_ID = "chat_id";
     public static final String MESSAGE = "message";
     public static final String TIMESTAMP = "timestamp";
 
@@ -23,7 +25,7 @@ public class ChatTableManager {
         this.dbm = dbm;
     }
 
-    public boolean addChatMessage(Integer user_id, String message){
+    public boolean addChatMessage(String user_name, String message, Integer chat_id){
 
         boolean success;
         SQLiteDatabase db = dbm.getWritableDatabase();
@@ -32,8 +34,11 @@ public class ChatTableManager {
             db.beginTransaction();
 
             ContentValues cv = new ContentValues();
-            cv.put(USER_ID, user_id);
+            cv.put(USER_NAME, user_name);
             cv.put(MESSAGE, message);
+            cv.put(CHAT_ID, chat_id);
+
+            Log.i("Testing", user_name + " - " + message + " - " + chat_id);
             db.insert(CHAT, MESSAGE, cv);
 
             db.setTransactionSuccessful();

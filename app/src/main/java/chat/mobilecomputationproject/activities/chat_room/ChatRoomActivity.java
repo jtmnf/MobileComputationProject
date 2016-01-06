@@ -17,6 +17,8 @@ import java.util.List;
 import chat.mobilecomputationproject.R;
 import chat.mobilecomputationproject.database.data_objects.ChatRoom;
 import chat.mobilecomputationproject.database.data_objects.ChatUser;
+import chat.mobilecomputationproject.database.managers.ChatTableManager;
+import chat.mobilecomputationproject.database.managers.DatabaseManager;
 import chat.mobilecomputationproject.utilities.MessagingListener;
 import chat.mobilecomputationproject.utilities.MessagingSender;
 
@@ -31,14 +33,18 @@ public class ChatRoomActivity extends AppCompatActivity {
     private Button send;
     private List<ChatMessage> msg= new ArrayList<ChatMessage>();
 
-    // Messaging Handlers
+    // Messaging Handler
     private MessagingSender messagingSender;
+
+    // Database Handler
+    private DatabaseManager databaseManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
 
+        databaseManager = new DatabaseManager(getApplicationContext());
         messagingSender = new MessagingSender();
         new MessagingListener(this);
 
@@ -89,6 +95,8 @@ public class ChatRoomActivity extends AppCompatActivity {
     }
 
     public void receiveMessage(String message, String username, String id){
+        databaseManager.getChatTableManager().addChatMessage(username, message, Integer.parseInt(id));
+
         if(id.equals(String.valueOf(chatRoom.getId()))) {
             if (!username.equals(chatUser.getUsername())) {
                 adp.add(new ChatMessage(true, message));

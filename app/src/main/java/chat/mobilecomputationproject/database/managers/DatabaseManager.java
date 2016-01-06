@@ -3,6 +3,7 @@ package chat.mobilecomputationproject.database.managers;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DatabaseManager extends SQLiteOpenHelper {
 
@@ -33,10 +34,15 @@ public class DatabaseManager extends SQLiteOpenHelper {
             db.beginTransaction();
 
             // user table creation
-            db.execSQL("CREATE TABLE " + UserTableManager.USER + " ( " + UserTableManager.USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + UserTableManager.USERNAME + " TEXT)");
+            db.execSQL("CREATE TABLE " + UserTableManager.USER + " ( " + UserTableManager.USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + UserTableManager.USERNAME + " TEXT)");
 
             // chat table creation
-            db.execSQL("CREATE TABLE " + ChatTableManager.CHAT + " ( " + ChatTableManager.MESSAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + UserTableManager.USER_ID + " INTEGER, " + ChatTableManager.MESSAGE + " TEXT, " + ChatTableManager.TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP)");
+            db.execSQL("CREATE TABLE " + ChatTableManager.CHAT + " ( " + ChatTableManager.MESSAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + UserTableManager.USERNAME + " TEXT, "
+                    + ChatTableManager.MESSAGE + " TEXT, "
+                    + ChatTableManager.CHAT_ID + " INTEGER, "
+                    + ChatTableManager.TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP)");
 
             db.setTransactionSuccessful();
 
@@ -46,5 +52,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
         finally {
             db.endTransaction();
         }
+    }
+
+    public ChatTableManager getChatTableManager() {
+        return chatTableManager;
     }
 }

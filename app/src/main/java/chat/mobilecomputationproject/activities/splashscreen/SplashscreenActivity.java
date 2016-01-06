@@ -23,6 +23,7 @@ import java.util.TimerTask;
 
 import chat.mobilecomputationproject.R;
 import chat.mobilecomputationproject.activities.select_chat_room.SelectChatRoomActivity;
+import chat.mobilecomputationproject.database.managers.DatabaseManager;
 import chat.mobilecomputationproject.utilities.RegistrationService;
 
 public class SplashscreenActivity extends AppCompatActivity {
@@ -30,6 +31,7 @@ public class SplashscreenActivity extends AppCompatActivity {
     private static final long SPLASHSCREEN_DELAY = 2000; // 3000 feels too "long"
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 
+    private DatabaseManager databaseManager;
 
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private static SplashscreenActivity parent;
@@ -38,6 +40,7 @@ public class SplashscreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        databaseManager = new DatabaseManager(this);
         parent = this;
 
         setContentView(R.layout.activity_splashscreen);
