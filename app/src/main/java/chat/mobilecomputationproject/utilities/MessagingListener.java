@@ -34,7 +34,7 @@ import chat.mobilecomputationproject.activities.chat_room.ChatRoomActivity;
 
 public class MessagingListener extends GcmListenerService {
 
-    private ChatRoomActivity chatRoomActivity;
+    private static ChatRoomActivity chatRoomActivity;
 
     public MessagingListener(){
 
@@ -74,8 +74,13 @@ public class MessagingListener extends GcmListenerService {
             return null;
         }
 
-        private void sendNotification(String message) {
-            chatRoomActivity.receiveMessage(message);
+        private void sendNotification(final String message) {
+            chatRoomActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    chatRoomActivity.receiveMessage(message);
+                }
+            });
         }
     }
 }
