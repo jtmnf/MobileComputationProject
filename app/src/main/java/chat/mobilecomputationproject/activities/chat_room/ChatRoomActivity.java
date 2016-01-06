@@ -1,9 +1,7 @@
 package chat.mobilecomputationproject.activities.chat_room;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -16,13 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import chat.mobilecomputationproject.R;
+import chat.mobilecomputationproject.database.data_objects.ChatRoom;
+import chat.mobilecomputationproject.database.data_objects.ChatUser;
 import chat.mobilecomputationproject.utilities.MessagingListener;
 import chat.mobilecomputationproject.utilities.MessagingSender;
-import chat.mobilecomputationproject.database.data_objects.ChatRoom;
 
 public class ChatRoomActivity extends AppCompatActivity {
 
     private ChatRoom chatRoom;
+    private ChatUser chatUser;
 
     private ChatArrayAdapter adp;
     private ListView list;
@@ -44,6 +44,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         messagingListener = new MessagingListener(this);
 
 		chatRoom = (ChatRoom) getIntent().getSerializableExtra("" + ChatRoom.class);
+        chatUser = (ChatUser) getIntent().getSerializableExtra("" + ChatUser.class);
 
         //buscar componentes graficos
         send = (Button) findViewById(R.id.btn);

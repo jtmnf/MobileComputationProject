@@ -19,8 +19,8 @@ import android.widget.TextView;
 
 import chat.mobilecomputationproject.R;
 import chat.mobilecomputationproject.activities.chat_room.ChatRoomActivity;
-import chat.mobilecomputationproject.activities.register.RegisterActivity;
 import chat.mobilecomputationproject.database.data_objects.ChatRoom;
+import chat.mobilecomputationproject.database.data_objects.ChatUser;
 
 /**
  * A login screen that offers login via username/password.
@@ -36,7 +36,6 @@ public class LoginActivity extends AppCompatActivity {
 
     // UI references.
     private EditText mUsernameView;
-    private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
 
@@ -50,8 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         // Set up the login form.
         mUsernameView = (EditText) findViewById(R.id.username);
 
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        mUsernameView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
@@ -67,17 +65,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 attemptLogin();
-            }
-        });
-
-        Button mRegisterButton = (Button) findViewById(R.id.register_button);
-        mRegisterButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // go to register activity
-                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
-                intent.putExtra("" + ChatRoom.class, selectedChatRoom);
-                startActivity(intent);
             }
         });
 
@@ -98,11 +85,9 @@ public class LoginActivity extends AppCompatActivity {
 
         // Reset errors.
         mUsernameView.setError(null);
-        mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
         String username = mUsernameView.getText().toString();
-        String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -114,13 +99,6 @@ public class LoginActivity extends AppCompatActivity {
             cancel = true;
         }
 
-        // Check for a valid password
-        else if (TextUtils.isEmpty(password)){
-            mPasswordView.setError(getString(R.string.error_field_required));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
@@ -129,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(username, password);
+            mAuthTask = new UserLoginTask(username);
             mAuthTask.execute((Void) null);
         }
     }
@@ -176,17 +154,15 @@ public class LoginActivity extends AppCompatActivity {
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mUsername;
-        private final String mPassword;
+        private ChatUser user;
 
-        UserLoginTask(String username, String password) {
-            mUsername = username;
-            mPassword = password;
+        UserLoginTask(String username) {
+            user = new ChatUser(System.nanoTime(), username);
         }
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
+            // TODO: attempt authentication against a network service and check if username is already taken
 
             try {
                 // Simulate network access.
@@ -194,8 +170,6 @@ public class LoginActivity extends AppCompatActivity {
             } catch (InterruptedException e) {
                 return false;
             }
-
-            // TODO: login the account here.
 
             return true;
         }
@@ -209,10 +183,11 @@ public class LoginActivity extends AppCompatActivity {
                 // go to the chat room
                 Intent intent = new Intent(getApplicationContext(), ChatRoomActivity.class);
                 intent.putExtra("" + ChatRoom.class, selectedChatRoom);
+                intent.putExtra("" + ChatUser.class, user);
                 startActivity(intent);
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                mUsernameView.setError(getString(R.string.error_invalid_username));
+                mUsernameView.requestFocus();
             }
         }
 

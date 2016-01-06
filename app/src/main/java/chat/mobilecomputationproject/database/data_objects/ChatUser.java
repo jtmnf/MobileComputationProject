@@ -1,24 +1,26 @@
 package chat.mobilecomputationproject.database.data_objects;
 
+import java.io.Serializable;
+
 /**
  * Created by aclima on 29/12/15.
  */
-public class ChatUser {
+public class ChatUser implements Serializable {
 
-    private Integer userId;
+    private long id;
     private String username;
 
-    public ChatUser(Integer userId, String username) {
-        this.userId = userId;
+    public ChatUser(long id, String username) {
+        this.id = id;
         this.username = username;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public long getId() {
+        return id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getUsername() {

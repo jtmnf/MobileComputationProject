@@ -14,7 +14,6 @@ public class UserTableManager {
     // table attributes
     public static final String USER_ID = "user_id";
     public static final String USERNAME = "username";
-    public static final String PASSWORD_HASH = "password_hash";
 
 
     private DatabaseManager dbm;
@@ -33,7 +32,6 @@ public class UserTableManager {
 
             ContentValues cv = new ContentValues();
             cv.put(USERNAME, username);
-            cv.put(PASSWORD_HASH, password_hash);
             db.insert(USER, USERNAME, cv);
 
             db.setTransactionSuccessful();
