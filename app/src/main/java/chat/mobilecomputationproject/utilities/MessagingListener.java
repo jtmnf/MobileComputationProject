@@ -37,7 +37,6 @@ public class MessagingListener extends GcmListenerService {
     private static ChatRoomActivity chatRoomActivity;
 
     public MessagingListener(){
-
     }
 
     public MessagingListener(ChatRoomActivity chatRoomActivity){

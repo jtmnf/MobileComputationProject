@@ -29,11 +29,9 @@ public class ChatRoomActivity extends AppCompatActivity {
     private EditText chatText;
     private Button send;
     private List<ChatMessage> msg= new ArrayList<ChatMessage>();
-    private boolean mySide = false;
 
     // Messaging Handlers
     private MessagingSender messagingSender;
-    private MessagingListener messagingListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +39,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat_room);
 
         messagingSender = new MessagingSender();
-        messagingListener = new MessagingListener(this);
+        new MessagingListener(this);
 
 		chatRoom = (ChatRoom) getIntent().getSerializableExtra("" + ChatRoom.class);
         chatUser = (ChatUser) getIntent().getSerializableExtra("" + ChatUser.class);
@@ -89,10 +87,8 @@ public class ChatRoomActivity extends AppCompatActivity {
     private boolean sendChatMessage() {
         String message = chatText.getText().toString();
 
-        adp.add(new ChatMessage(mySide, message));
+        adp.add(new ChatMessage(false, message));
         chatText.setText("");
-
-        mySide = !mySide;
 
         messagingSender.sendMessage(message);
 
@@ -100,7 +96,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     }
 
     public void receiveMessage(String message){
-        adp.add(new ChatMessage(mySide, message));
+        adp.add(new ChatMessage(true, message));
         // TODO: implement receiving logic here
         // change the "mySide" here!!!!!!!
     }
