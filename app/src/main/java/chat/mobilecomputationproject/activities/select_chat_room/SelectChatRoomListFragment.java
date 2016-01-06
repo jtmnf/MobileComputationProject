@@ -12,7 +12,6 @@ import java.util.List;
 
 import chat.mobilecomputationproject.R;
 import chat.mobilecomputationproject.activities.login.LoginActivity;
-import chat.mobilecomputationproject.activities.select_chat_room.dummy.DummyContent;
 import chat.mobilecomputationproject.database.data_objects.ChatRoom;
 
 public class SelectChatRoomListFragment extends ListFragment {
@@ -30,7 +29,7 @@ public class SelectChatRoomListFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
 
         // TODO: get the info here
-        chatRooms = new DummyContent().getItems();
+        chatRooms = new DefaultChatRooms().getItems();
 
         ChatRoomAdapter adapter = new ChatRoomAdapter(getActivity(), R.layout.select_chat_room_item, chatRooms);
         setListAdapter(adapter);
@@ -38,8 +37,8 @@ public class SelectChatRoomListFragment extends ListFragment {
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 // go to the login screen for this chat room
-                // TODO: pass chat room?
                 ChatRoom selectedChatRoom = chatRooms.get(position);
                 Intent intent = new Intent(getActivity().getApplicationContext(), LoginActivity.class);
                 intent.putExtra("" + ChatRoom.class, selectedChatRoom);
