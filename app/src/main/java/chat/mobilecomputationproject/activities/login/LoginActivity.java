@@ -20,6 +20,7 @@ import android.widget.TextView;
 import chat.mobilecomputationproject.R;
 import chat.mobilecomputationproject.activities.chat_room.ChatRoomActivity;
 import chat.mobilecomputationproject.activities.register.RegisterActivity;
+import chat.mobilecomputationproject.database.data_objects.ChatRoom;
 
 /**
  * A login screen that offers login via username/password.
@@ -31,6 +32,8 @@ public class LoginActivity extends AppCompatActivity {
      */
     private UserLoginTask mAuthTask = null;
 
+    private ChatRoom selectedChatRoom;
+
     // UI references.
     private EditText mUsernameView;
     private EditText mPasswordView;
@@ -41,6 +44,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        selectedChatRoom = (ChatRoom) getIntent().getSerializableExtra("selectedChatRoom");
+
         // Set up the login form.
         mUsernameView = (EditText) findViewById(R.id.username);
 

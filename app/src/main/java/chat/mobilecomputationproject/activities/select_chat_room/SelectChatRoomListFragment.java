@@ -41,8 +41,9 @@ public class SelectChatRoomListFragment extends ListFragment {
                 // go to the login screen for this chat room
                 // TODO: pass chat room?
                 ChatRoom selectedChatRoom = chatRooms.get(position);
-
-                startActivity(new Intent(getActivity().getApplicationContext(), LoginActivity.class));
+                Intent intent = new Intent(getActivity().getApplicationContext(), LoginActivity.class);
+                intent.putExtra("selectedChatRoom", selectedChatRoom);
+                startActivity(intent);
             }
         });
     }
