@@ -16,17 +16,31 @@
 
 package chat.mobilecomputationproject.utilities;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 
 import com.google.android.gms.gcm.GcmListenerService;
 
+import chat.mobilecomputationproject.R;
 import chat.mobilecomputationproject.activities.chat_room.ChatRoomActivity;
 
 public class MessagingListener extends GcmListenerService {
 
     private ChatRoomActivity chatRoomActivity;
 
-    public MessagingListener(ChatRoomActivity chatRoomActivity) {
+    public MessagingListener(){
+
+    }
+
+    public MessagingListener(ChatRoomActivity chatRoomActivity){
         this.chatRoomActivity = chatRoomActivity;
     }
 
@@ -45,24 +59,23 @@ public class MessagingListener extends GcmListenerService {
         //We can take care of the message here!
 
 
-        /**
-         * Production applications would usually process the message here.
-         * Eg: - Syncing with server.
-         *     - Store message in local database.
-         *     - Update UI.if (from.startsWith("/topics/")) {
-         // message received from some topic.
-         } else {
-         // normal downstream message.
-         }
-         */
-
-        sendNotification(message);
+        new ReceiveMessage().execute(message);
     }
 
     /**
      * Show a notification of the received GCM message.
      */
-    private void sendNotification(String message) {
-        chatRoomActivity.receiveMessage(message);
+
+
+    class ReceiveMessage extends AsyncTask<String, Void, String>{
+        @Override
+        protected String doInBackground(String... params) {
+            sendNotification(params[0]);
+            return null;
+        }
+
+        private void sendNotification(String message) {
+            chatRoomActivity.receiveMessage(message);
+        }
     }
 }

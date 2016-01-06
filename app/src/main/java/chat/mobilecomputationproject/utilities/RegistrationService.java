@@ -29,6 +29,8 @@ import com.google.android.gms.iid.InstanceID;
 
 import java.io.IOException;
 
+import chat.mobilecomputationproject.R;
+
 public class RegistrationService extends IntentService {
 
     private static final String TAG = "RegIntentService";
@@ -54,13 +56,13 @@ public class RegistrationService extends IntentService {
 
             // [START get_token]
             InstanceID instanceID = InstanceID.getInstance(this);
-            String token = instanceID.getToken("577694608281", GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
+            String token = instanceID.getToken(getString(R.string.gcm_defaultSenderId), GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
             // [END get_token]
 
             Log.i(TAG, "GCM Registration Token: " + token);
 
             // Subscribe to topic channels
-            //subscribeTopics(token);
+            subscribeTopics(token);
 
             // You should store a boolean that indicates whether the generated token has been
             // sent to your server. If the boolean is false, send the token to your server,

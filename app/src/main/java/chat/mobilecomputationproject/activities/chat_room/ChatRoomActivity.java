@@ -1,7 +1,9 @@
 package chat.mobilecomputationproject.activities.chat_room;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -97,6 +99,8 @@ public class ChatRoomActivity extends AppCompatActivity {
     }
 
     public void receiveMessage(String message){
+        adp.add(new ChatMessage(mySide, message));
         // TODO: implement receiving logic here
+        // change the "mySide" here!!!!!!!
     }
 }
