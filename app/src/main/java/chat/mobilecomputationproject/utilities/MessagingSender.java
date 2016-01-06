@@ -38,7 +38,7 @@ public class MessagingSender {
                 // Create connection to send GCM Message request.
                 URL url = new URL("https://android.googleapis.com/gcm/send");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestProperty("Authorization", "key=" + API_KEY);
+                conn.setRequestProperty("Authorization", "key = " + API_KEY);
                 conn.setRequestProperty("Content-Type", "application/json");
                 conn.setRequestMethod("POST");
                 conn.setDoOutput(true);
