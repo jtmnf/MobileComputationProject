@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        selectedChatRoom = (ChatRoom) getIntent().getSerializableExtra("selectedChatRoom");
+        selectedChatRoom = (ChatRoom) getIntent().getSerializableExtra("" + ChatRoom.class);
 
         // Set up the login form.
         mUsernameView = (EditText) findViewById(R.id.username);
@@ -204,7 +204,9 @@ public class LoginActivity extends AppCompatActivity {
 
             if (success) {
                 // go to the chat room
-                startActivity(new Intent(getApplicationContext(), ChatRoomActivity.class));
+                Intent intent = new Intent(getApplicationContext(), ChatRoomActivity.class);
+                intent.putExtra("" + ChatRoom.class, selectedChatRoom);
+                startActivity(intent);
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
