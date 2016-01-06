@@ -74,7 +74,10 @@ public class LoginActivity extends AppCompatActivity {
         mRegisterButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+                // go to register activity
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                intent.putExtra("" + ChatRoom.class, selectedChatRoom);
+                startActivity(intent);
             }
         });
 

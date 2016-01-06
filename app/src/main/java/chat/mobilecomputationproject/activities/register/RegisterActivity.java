@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import chat.mobilecomputationproject.R;
 import chat.mobilecomputationproject.activities.chat_room.ChatRoomActivity;
+import chat.mobilecomputationproject.database.data_objects.ChatRoom;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -28,6 +29,8 @@ public class RegisterActivity extends AppCompatActivity {
      * Keep track of the register task to ensure we can cancel it if requested.
      */
     private UserRegisterTask mAuthTask = null;
+
+    private ChatRoom selectedChatRoom;
 
     // UI references.
     private EditText mUsernameView;
@@ -40,6 +43,9 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        selectedChatRoom = (ChatRoom) getIntent().getSerializableExtra("" + ChatRoom.class);
+
         // Set up the register form.
         mUsernameView = (EditText) findViewById(R.id.username);
 
@@ -232,7 +238,10 @@ public class RegisterActivity extends AppCompatActivity {
             showProgress(false);
 
             if (success) {
-                startActivity(new Intent(getApplicationContext(), ChatRoomActivity.class));
+                // go to the chat room
+                Intent intent = new Intent(getApplicationContext(), ChatRoomActivity.class);
+                intent.putExtra("" + ChatRoom.class, selectedChatRoom);
+                startActivity(intent);
                 finish();
             } else {
                 Toast.makeText(getApplicationContext(), getString(R.string.error_registering_account), Toast.LENGTH_LONG).show();
