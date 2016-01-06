@@ -16,8 +16,8 @@ public class MessagingSender {
 
     private static String API_KEY = "AIzaSyBbzKKCuyJCm4DEM1PWnrCbKtmlC2sNMmE";
 
-    public void sendMessage(String message) {
-        new SendingMessageAsync().execute(message);
+    public void sendMessage(String message, String username, long id) {
+        new SendingMessageAsync().execute(message, username, String.valueOf(id));
     }
 
     class SendingMessageAsync extends AsyncTask<String, Void, String>{
@@ -28,8 +28,9 @@ public class MessagingSender {
                 JSONObject jGcmData = new JSONObject();
                 JSONObject jData = new JSONObject();
                 jData.put("message", params[0]);
+                jData.put("name", params[1]);
+                jData.put("id", params[2]);
 
-                //TODO - Subscritption system
                 jGcmData.put("to", "/topics/global");
 
                 // What to send in GCM message.
@@ -49,9 +50,8 @@ public class MessagingSender {
 
                 InputStream inputStream = conn.getInputStream();
                 String resp = IOUtils.toString(inputStream);
-                System.out.println(resp);
-                System.out.println("Check your device/emulator for notification or logcat for " +
-                        "confirmation of the receipt of the GCM message.");
+                //System.out.println(resp);
+                //System.out.println("Check your device/emulator for notification or logcat for confirmation of the receipt of the GCM message.");
             } catch (JSONException e) {
                 return "RESULT_NO_OK";
             } catch (IOException e){

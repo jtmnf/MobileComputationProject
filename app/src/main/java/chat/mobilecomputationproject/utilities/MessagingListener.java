@@ -1,12 +1,12 @@
 /**
  * Copyright 2015 Google Inc. All Rights Reserved.
- * <p/>
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p/>
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p/>
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,10 +36,10 @@ public class MessagingListener extends GcmListenerService {
 
     private static ChatRoomActivity chatRoomActivity;
 
-    public MessagingListener(){
+    public MessagingListener() {
     }
 
-    public MessagingListener(ChatRoomActivity chatRoomActivity){
+    public MessagingListener(ChatRoomActivity chatRoomActivity) {
         this.chatRoomActivity = chatRoomActivity;
     }
 
@@ -53,33 +53,28 @@ public class MessagingListener extends GcmListenerService {
     @Override
     public void onMessageReceived(String from, Bundle data) {
         String message = data.getString("message");
+        String username = data.getString("name");
+        String id = data.getString("id");
 
-        //TODO
-        //We can take care of the message here!
-
-
-        new ReceiveMessage().execute(message);
+        new ReceiveMessage().execute(message, username, id);
     }
 
-    /**
-     * Show a notification of the received GCM message.
-     */
-
-
-    class ReceiveMessage extends AsyncTask<String, Void, String>{
+    class ReceiveMessage extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
-            sendNotification(params[0]);
+            sendNotification(params[0], params[1], params[2]);
             return null;
         }
 
-        private void sendNotification(final String message) {
-            chatRoomActivity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    chatRoomActivity.receiveMessage(message);
-                }
-            });
+        private void sendNotification(final String message, final String username, final String id) {
+            if (chatRoomActivity != null) {
+                chatRoomActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        chatRoomActivity.receiveMessage(message, username, id);
+                    }
+                });
+            }
         }
     }
 }

@@ -2,6 +2,7 @@ package chat.mobilecomputationproject.activities.chat_room;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -66,14 +67,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         //insercao do adaptador na lista
         list.setAdapter(adp);
 
-
-        /*adp.registerDataSetObserver(new DataSetObserver() {
-            @Override
-            public void onChanged() {
-                super.onChanged();
-                list.setSelection(adp.getCount() - 1);
-            }
-        });*/
+        messagingSender.sendMessage("User " + chatUser.getUsername() + " entered the chat", chatUser.getUsername(), chatRoom.getId());
     }
 
     @Override
@@ -90,14 +84,17 @@ public class ChatRoomActivity extends AppCompatActivity {
         adp.add(new ChatMessage(false, message));
         chatText.setText("");
 
-        messagingSender.sendMessage(message);
-
+        messagingSender.sendMessage(message, chatUser.getUsername(), chatRoom.getId());
         return true;
     }
 
-    public void receiveMessage(String message){
-        adp.add(new ChatMessage(true, message));
-        // TODO: implement receiving logic here
-        // change the "mySide" here!!!!!!!
+    public void receiveMessage(String message, String username, String id){
+        if(id.equals(String.valueOf(chatRoom.getId()))) {
+            if (!username.equals(chatUser.getUsername())) {
+                adp.add(new ChatMessage(true, message));
+            } else {
+                Log.i("ChatRoomMessage", "You sended a message that was delivered correctly!");
+            }
+        }
     }
 }
