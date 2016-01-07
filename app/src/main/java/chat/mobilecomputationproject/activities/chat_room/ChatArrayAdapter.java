@@ -13,15 +13,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import chat.mobilecomputationproject.R;
+import chat.mobilecomputationproject.database.managers.DatabaseManager;
 
 
 public class ChatArrayAdapter extends ArrayAdapter<ChatMessage>{
     private TextView chatText;
+    private TextView headChat;
     private List<ChatMessage> messageList = new ArrayList<ChatMessage>();
     private LinearLayout layout;
 
+    // Database
+    private DatabaseManager databaseManager;
+
     public ChatArrayAdapter(Context context, int  textViewResourceId, List<ChatMessage> objects) {
         super(context,  textViewResourceId, objects);
+        databaseManager = new DatabaseManager(this.getContext());
     }
 
     public void add(ChatMessage object) {
@@ -47,11 +53,13 @@ public class ChatArrayAdapter extends ArrayAdapter<ChatMessage>{
         layout = (LinearLayout) v.findViewById(R.id.my_message);
         ChatMessage messageObj = getItem(position);
         chatText = (TextView) v.findViewById(R.id.singleMessage);
+        headChat = (TextView) v.findViewById(R.id.headChat);
 
         chatText.setText(messageObj.getMessage());
         chatText.setBackgroundResource(messageObj.getMySide() ? R.drawable.ballon1 : R.drawable.ballon2);
         layout.setGravity(messageObj.getMySide() ? Gravity.LEFT : Gravity.RIGHT);
 
+        headChat.setText(messageObj.getUserName() + " | " + messageObj.getDate());
         return v;
     }
 

@@ -12,13 +12,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import chat.mobilecomputationproject.R;
 import chat.mobilecomputationproject.database.data_objects.ChatRoom;
 import chat.mobilecomputationproject.database.data_objects.ChatUser;
-import chat.mobilecomputationproject.database.managers.ChatTableManager;
 import chat.mobilecomputationproject.database.managers.DatabaseManager;
 import chat.mobilecomputationproject.utilities.MessagingListener;
 import chat.mobilecomputationproject.utilities.MessagingSender;
@@ -91,7 +93,10 @@ public class ChatRoomActivity extends AppCompatActivity {
     private boolean sendChatMessage() {
         String message = chatText.getText().toString();
 
-        adp.add(new ChatMessage(false, message));
+        DateFormat df = new SimpleDateFormat("h:mm a - dd/MM/yyyy");
+        String date = df.format(Calendar.getInstance().getTime());
+
+        adp.add(new ChatMessage(false, message,chatUser.getUsername(),date));
         chatText.setText("");
 
         messagingSender.sendMessage(message, chatUser.getUsername(), chatRoom.getId());
@@ -106,7 +111,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         if(id.equals(String.valueOf(chatRoom.getId()))) {
             if (!username.equals(chatUser.getUsername())) {
-                adp.add(new ChatMessage(true, message));
+                adp.add(new ChatMessage(true, message,username,""));
             } else {
                 Log.i("ChatRoomMessage", "You sended a message that was delivered correctly!");
             }
