@@ -9,18 +9,20 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "worldinchat.db";
 
-    private UserTableManager userTableManager;
-    private ChatTableManager chatTableManager;
+    private static UserTableManager userTableManager;
+    private static ChatTableManager chatTableManager;
+    private SQLiteDatabase sqLiteDatabase;
 
     public DatabaseManager(Context context){
         super(context, DATABASE_NAME, null, 1);
+
+        userTableManager = new UserTableManager(this);
+        chatTableManager = new ChatTableManager(this);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         createDatabase(db);
-        userTableManager = new UserTableManager(this);
-        chatTableManager = new ChatTableManager(this);
     }
 
     @Override
@@ -31,9 +33,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     private void createDatabase(SQLiteDatabase db){
         try{
             db = SQLiteDatabase.openDatabase(DATABASE_NAME, null, SQLiteDatabase.OPEN_READONLY);
-            db.beginTransaction();
-
-            // user table creation
+        } catch (Exception e){
             db.execSQL("CREATE TABLE " + UserTableManager.USER + " ( " + UserTableManager.USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + UserTableManager.USERNAME + " TEXT)");
 
@@ -44,17 +44,14 @@ public class DatabaseManager extends SQLiteOpenHelper {
                     + ChatTableManager.CHAT_ID + " INTEGER, "
                     + ChatTableManager.TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP)");
 
-            db.setTransactionSuccessful();
-
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        finally {
-            db.endTransaction();
         }
     }
 
     public ChatTableManager getChatTableManager() {
         return chatTableManager;
+    }
+
+    public UserTableManager getUserTableManager() {
+        return userTableManager;
     }
 }

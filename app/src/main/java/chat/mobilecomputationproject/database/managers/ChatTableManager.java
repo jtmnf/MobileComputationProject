@@ -14,7 +14,7 @@ public class ChatTableManager {
 
     // table attributes
     public static final String MESSAGE_ID = "message_id";
-    public static final String USER_NAME = "user_name";
+    public static final String USER_NAME = "username";
     public static final String CHAT_ID = "chat_id";
     public static final String MESSAGE = "message";
     public static final String TIMESTAMP = "timestamp";
@@ -26,8 +26,8 @@ public class ChatTableManager {
     }
 
     public boolean addChatMessage(String user_name, String message, Integer chat_id){
+        boolean success = false;
 
-        boolean success;
         SQLiteDatabase db = dbm.getWritableDatabase();
 
         try {
@@ -38,7 +38,6 @@ public class ChatTableManager {
             cv.put(MESSAGE, message);
             cv.put(CHAT_ID, chat_id);
 
-            Log.i("Testing", user_name + " - " + message + " - " + chat_id);
             db.insert(CHAT, MESSAGE, cv);
 
             db.setTransactionSuccessful();

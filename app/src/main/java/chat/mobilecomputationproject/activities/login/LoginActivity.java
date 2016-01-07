@@ -21,6 +21,7 @@ import chat.mobilecomputationproject.R;
 import chat.mobilecomputationproject.activities.chat_room.ChatRoomActivity;
 import chat.mobilecomputationproject.database.data_objects.ChatRoom;
 import chat.mobilecomputationproject.database.data_objects.ChatUser;
+import chat.mobilecomputationproject.database.managers.DatabaseManager;
 
 /**
  * A login screen that offers login via username/password.
@@ -39,12 +40,17 @@ public class LoginActivity extends AppCompatActivity {
     private View mProgressView;
     private View mLoginFormView;
 
+    // Database
+    private DatabaseManager databaseManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         selectedChatRoom = (ChatRoom) getIntent().getSerializableExtra("" + ChatRoom.class);
+
+        databaseManager = new DatabaseManager(this);
 
         // Set up the login form.
         mUsernameView = (EditText) findViewById(R.id.username);
@@ -162,8 +168,6 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service and check if username is already taken
-
             try {
                 // Simulate network access.
                 Thread.sleep(2000);
@@ -180,7 +184,7 @@ public class LoginActivity extends AppCompatActivity {
             showProgress(false);
 
             if (success) {
-                // go to the chat room
+                databaseManager.getUserTableManager().addUser(user.getUsername());
                 Intent intent = new Intent(getApplicationContext(), ChatRoomActivity.class);
                 intent.putExtra("" + ChatRoom.class, selectedChatRoom);
                 intent.putExtra("" + ChatUser.class, user);
