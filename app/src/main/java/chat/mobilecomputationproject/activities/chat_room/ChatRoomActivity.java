@@ -57,6 +57,8 @@ public class ChatRoomActivity extends AppCompatActivity {
 		chatRoom = (ChatRoom) getIntent().getSerializableExtra("" + ChatRoom.class);
         chatUser = (ChatUser) getIntent().getSerializableExtra("" + ChatUser.class);
 
+        setTitle(chatRoom.getName());
+
         //buscar componentes graficos
         send = (Button) findViewById(R.id.btn);
         list = (ListView) findViewById(R.id.listview);
