@@ -11,7 +11,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     private static UserTableManager userTableManager;
     private static ChatTableManager chatTableManager;
-    private SQLiteDatabase sqLiteDatabase;
 
     public DatabaseManager(Context context){
         super(context, DATABASE_NAME, null, 1);
@@ -42,8 +41,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
                     + UserTableManager.USERNAME + " TEXT, "
                     + ChatTableManager.MESSAGE + " TEXT, "
                     + ChatTableManager.CHAT_ID + " INTEGER, "
+                    + ChatTableManager.DATE + " TEXT, "
                     + ChatTableManager.TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP)");
-
         }
     }
 

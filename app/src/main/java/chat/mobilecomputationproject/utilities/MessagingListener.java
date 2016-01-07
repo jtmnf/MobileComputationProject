@@ -55,23 +55,24 @@ public class MessagingListener extends GcmListenerService {
         String message = data.getString("message");
         String username = data.getString("name");
         String id = data.getString("id");
+        String date = data.getString("date");
 
-        new ReceiveMessage().execute(message, username, id);
+        new ReceiveMessage().execute(message, username, id, date);
     }
 
     class ReceiveMessage extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
-            sendNotification(params[0], params[1], params[2]);
+            sendNotification(params[0], params[1], params[2], params[3]);
             return null;
         }
 
-        private void sendNotification(final String message, final String username, final String id) {
+        private void sendNotification(final String message, final String username, final String id, final String date) {
             if (chatRoomActivity != null) {
                 chatRoomActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        chatRoomActivity.receiveMessage(message, username, id);
+                        chatRoomActivity.receiveMessage(message, username, id, date);
                     }
                 });
             }

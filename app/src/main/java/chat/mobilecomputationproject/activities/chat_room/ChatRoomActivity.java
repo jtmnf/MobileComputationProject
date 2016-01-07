@@ -78,8 +78,6 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         //insercao do adaptador na lista
         list.setAdapter(adp);
-
-        messagingSender.sendMessage("User " + chatUser.getUsername() + " entered the chat", chatUser.getUsername(), chatRoom.getId());
     }
 
     @Override
@@ -99,19 +97,16 @@ public class ChatRoomActivity extends AppCompatActivity {
         adp.add(new ChatMessage(false, message,chatUser.getUsername(),date));
         chatText.setText("");
 
-        messagingSender.sendMessage(message, chatUser.getUsername(), chatRoom.getId());
+        messagingSender.sendMessage(message, chatUser.getUsername(), chatRoom.getId(), date);
         return true;
     }
 
-    public void receiveMessage(String message, String username, String id){
-        if(databaseManager.getChatTableManager() == null){
-            System.out.println("-------------------------------------------------------------------------------------------------------");
-        }
-        databaseManager.getChatTableManager().addChatMessage(username, message, Integer.parseInt(id));
+    public void receiveMessage(String message, String username, String id, String date){
+        databaseManager.getChatTableManager().addChatMessage(username, message, Integer.parseInt(id), date);
 
         if(id.equals(String.valueOf(chatRoom.getId()))) {
             if (!username.equals(chatUser.getUsername())) {
-                adp.add(new ChatMessage(true, message,username,""));
+                adp.add(new ChatMessage(true, message, username, date));
             } else {
                 Log.i("ChatRoomMessage", "You sended a message that was delivered correctly!");
             }

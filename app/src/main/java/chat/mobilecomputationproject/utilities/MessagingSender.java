@@ -16,8 +16,8 @@ public class MessagingSender {
 
     private static String API_KEY = "AIzaSyBbzKKCuyJCm4DEM1PWnrCbKtmlC2sNMmE";
 
-    public void sendMessage(String message, String username, long id) {
-        new SendingMessageAsync().execute(message, username, String.valueOf(id));
+    public void sendMessage(String message, String username, long id, String date) {
+        new SendingMessageAsync().execute(message, username, String.valueOf(id), date);
     }
 
     class SendingMessageAsync extends AsyncTask<String, Void, String>{
@@ -30,6 +30,7 @@ public class MessagingSender {
                 jData.put("message", params[0]);
                 jData.put("name", params[1]);
                 jData.put("id", params[2]);
+                jData.put("date", params[3]);
 
                 jGcmData.put("to", "/topics/global");
 
