@@ -38,16 +38,10 @@
             android:name=".activities.select_chat_room.SelectChatRoomActivity"
             android:label="@string/title_activity_select_chat_room"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".activities.create_chat_room.CreateChatRoomActivity"
-            android:label="@string/title_activity_create_chat_room"></activity>
 
         <activity
             android:name=".activities.login.LoginActivity"
             android:label="@string/title_activity_login"></activity>
-        <activity
-            android:name=".activities.register.RegisterActivity"
-            android:label="@string/title_activity_register"></activity>
 
         <activity android:name=".activities.chat_room.ChatRoomActivity"></activity>
 
