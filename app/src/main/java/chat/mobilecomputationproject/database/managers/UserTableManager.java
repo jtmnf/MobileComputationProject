@@ -22,7 +22,7 @@ public class UserTableManager {
         this.dbm = dbm;
     }
 
-    public boolean addUser(String username, String password_hash){
+    public boolean addUser(String username){
 
         boolean success;
         SQLiteDatabase db = dbm.getWritableDatabase();

@@ -1,5 +1,6 @@
 package chat.mobilecomputationproject.activities.chat_room;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -38,6 +39,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     // Database Handler
     private DatabaseManager databaseManager;
+    private SQLiteDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,8 @@ public class ChatRoomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat_room);
 
         databaseManager = new DatabaseManager(getApplicationContext());
+        database = databaseManager.getWritableDatabase();
+
         messagingSender = new MessagingSender();
         new MessagingListener(this);
 
@@ -95,6 +99,9 @@ public class ChatRoomActivity extends AppCompatActivity {
     }
 
     public void receiveMessage(String message, String username, String id){
+        if(databaseManager.getChatTableManager() == null){
+            System.out.println("-------------------------------------------------------------------------------------------------------");
+        }
         databaseManager.getChatTableManager().addChatMessage(username, message, Integer.parseInt(id));
 
         if(id.equals(String.valueOf(chatRoom.getId()))) {
