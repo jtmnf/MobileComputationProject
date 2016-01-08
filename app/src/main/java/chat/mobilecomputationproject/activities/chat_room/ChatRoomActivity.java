@@ -1,16 +1,19 @@
 package chat.mobilecomputationproject.activities.chat_room;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -90,6 +93,19 @@ public class ChatRoomActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Take appropriate action for each action item click
+        switch (item.getItemId()) {
+            case R.id.action_change:
+                Intent intent = new Intent(this, ThemeActivity.class);
+                startActivityForResult(intent, 123);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     private boolean sendChatMessage() {
         String message = chatText.getText().toString();
 
@@ -101,6 +117,25 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         messagingSender.sendMessage(message, chatUser.getUsername(), chatRoom.getId(), date);
         return true;
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent)	{
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (resultCode==RESULT_OK)	{
+            if (requestCode==123){
+                String theme = intent.getStringExtra("theme");
+
+                if(theme.equals("1")){
+                    adp.setTheme(1);
+                }
+                if(theme.equals("2")){
+                    adp.setTheme(2);
+                }
+                if(theme.equals("3")){
+                    adp.setTheme(3);
+                }
+            }
+        }
     }
 
     public void receiveMessage(String message, String username, String id, String date){

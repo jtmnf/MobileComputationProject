@@ -21,6 +21,7 @@ public class ChatArrayAdapter extends ArrayAdapter<ChatMessage>{
     private TextView headChat;
     private List<ChatMessage> messageList = new ArrayList<ChatMessage>();
     private LinearLayout layout;
+    private int themeType;
 
     // Database
     private DatabaseManager databaseManager;
@@ -28,11 +29,16 @@ public class ChatArrayAdapter extends ArrayAdapter<ChatMessage>{
     public ChatArrayAdapter(Context context, int  textViewResourceId, List<ChatMessage> objects) {
         super(context,  textViewResourceId, objects);
         databaseManager = new DatabaseManager(this.getContext());
+        themeType=1;
     }
 
     public void add(ChatMessage object) {
         messageList.add(object);
         super.add(object);
+    }
+
+    public void setTheme(int theme){
+        themeType = theme;
     }
 
     public int getCount(){
@@ -56,7 +62,17 @@ public class ChatArrayAdapter extends ArrayAdapter<ChatMessage>{
         headChat = (TextView) v.findViewById(R.id.headChat);
 
         chatText.setText(messageObj.getMessage());
-        chatText.setBackgroundResource(messageObj.getMySide() ? R.drawable.ballon1 : R.drawable.ballon2);
+
+        if(themeType==1) {
+            chatText.setBackgroundResource(messageObj.getMySide() ? R.drawable.ballon1_1 : R.drawable.ballon2_1);
+        }
+        else if(themeType==2) {
+            chatText.setBackgroundResource(messageObj.getMySide() ? R.drawable.ballon1_2 : R.drawable.ballon2_2);
+        }
+        else if(themeType==3) {
+            chatText.setBackgroundResource(messageObj.getMySide() ? R.drawable.ballon1_3 : R.drawable.ballon2_3);
+        }
+
         layout.setGravity(messageObj.getMySide() ? Gravity.LEFT : Gravity.RIGHT);
 
         headChat.setText(messageObj.getUserName() + " | " + messageObj.getDate());

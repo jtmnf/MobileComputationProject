@@ -35,6 +35,8 @@
 
     <string name="bacon">Bacon ipsum dolor amet t-bone bresaola brisket corned beef tail shank pork. Capicola ground round meatloaf pork loin andouille porchetta ball tip meatball. Corned beef filet mignon beef pork frankfurter, cow fatback porchetta meatball. Ribeye venison pig jerky shankle bresaola turkey beef. Turducken landjaeger ham hock filet mignon, bacon strip steak turkey pancetta beef ribs tongue venison cupim. Swine short loin salami beef ribs cupim leberkas sausage ham beef pancetta. Shoulder salami shank swine prosciutto.</string>
 
-    <string name="action_remove">Remove Users</string>
+    <string name="action_change">Change Theme</string>
+    <string name="title_activity_theme">ThemeActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 
 </resources>
