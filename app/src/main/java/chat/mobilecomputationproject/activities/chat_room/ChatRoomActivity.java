@@ -1,5 +1,6 @@
 package chat.mobilecomputationproject.activities.chat_room;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import chat.mobilecomputationproject.R;
 import chat.mobilecomputationproject.database.data_objects.ChatRoom;
 import chat.mobilecomputationproject.database.data_objects.ChatUser;
 import chat.mobilecomputationproject.database.managers.DatabaseManager;
+import chat.mobilecomputationproject.utilities.ChatNotificationService;
 import chat.mobilecomputationproject.utilities.MessagingListener;
 import chat.mobilecomputationproject.utilities.MessagingSender;
 
@@ -90,6 +92,17 @@ public class ChatRoomActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        // disable the notifications for this chat room when we leave
+        Intent intent = new Intent();
+        intent.setAction(ChatNotificationService.ACTION);
+        intent.putExtra(ChatNotificationService.STOP_SERVICE_BROADCAST_KEY, ChatNotificationService.RQS_STOP_SERVICE);
+        sendBroadcast(intent);
+    }
+
     private boolean sendChatMessage() {
         String message = chatText.getText().toString();
 
@@ -104,11 +117,19 @@ public class ChatRoomActivity extends AppCompatActivity {
     }
 
     public void receiveMessage(String message, String username, String id, String date){
+
+        // handle the message database-wise
         databaseManager.getChatTableManager().addChatMessage(username, message, Integer.parseInt(id), date);
 
+        // display message
         if(id.equals(String.valueOf(chatRoom.getId()))) {
             if (!username.equals(chatUser.getUsername())) {
                 adp.add(new ChatMessage(true, message, username, date));
+
+                // call the notification service for the message
+                Intent intent = new Intent(ChatRoomActivity.this, ChatNotificationService.class);
+                startService(intent);
+
             } else {
                 Log.i("ChatRoomMessage", "You sended a message that was delivered correctly!");
             }

@@ -37,13 +37,19 @@
         <activity
             android:name=".activities.select_chat_room.SelectChatRoomActivity"
             android:label="@string/title_activity_select_chat_room"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name=".activities.login.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login"/>
 
-        <activity android:name=".activities.chat_room.ChatRoomActivity"></activity>
+        <activity
+            android:name=".activities.chat_room.ChatRoomActivity"
+            android:label="@string/chat_room"
+            android:launchMode="singleTop"/>
+
+        <!-- Chat Message Notification Service -->
+        <service android:name=".utilities.ChatNotificationService"/>
 
         <!-- [START gcm_receiver] -->
         <receiver
@@ -79,7 +85,7 @@
 
         <service
             android:name=".utilities.RegistrationService"
-            android:exported="false"></service>
+            android:exported="false"/>
     </application>
 
 </manifest>
