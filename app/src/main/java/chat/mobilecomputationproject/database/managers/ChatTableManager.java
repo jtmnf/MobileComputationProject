@@ -2,7 +2,6 @@ package chat.mobilecomputationproject.database.managers;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 /**
  * Created by aclima on 26/12/15.
@@ -40,6 +39,9 @@ public class ChatTableManager {
             cv.put(CHAT_ID, chat_id);
             cv.put(DATE, date);
 
+            /*[TO DO]
+            * Erro quando insere na base de dados
+            * */
             db.insert(CHAT, MESSAGE, cv);
 
             db.setTransactionSuccessful();

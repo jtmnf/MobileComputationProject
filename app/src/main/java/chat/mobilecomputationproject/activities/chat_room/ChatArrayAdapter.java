@@ -64,13 +64,13 @@ public class ChatArrayAdapter extends ArrayAdapter<ChatMessage>{
         chatText.setText(messageObj.getMessage());
 
         if(themeType==1) {
-            chatText.setBackgroundResource(messageObj.getMySide() ? R.drawable.ballon1_1 : R.drawable.ballon2_1);
+            chatText.setBackgroundResource(messageObj.getMySide() ? R.drawable.ballon2_1 : R.drawable.ballon1_1);
         }
         else if(themeType==2) {
-            chatText.setBackgroundResource(messageObj.getMySide() ? R.drawable.ballon1_2 : R.drawable.ballon2_2);
+            chatText.setBackgroundResource(messageObj.getMySide() ? R.drawable.ballon2_2 : R.drawable.ballon1_2);
         }
         else if(themeType==3) {
-            chatText.setBackgroundResource(messageObj.getMySide() ? R.drawable.ballon1_3 : R.drawable.ballon2_3);
+            chatText.setBackgroundResource(messageObj.getMySide() ? R.drawable.ballon2_3 : R.drawable.ballon1_3);
         }
 
         layout.setGravity(messageObj.getMySide() ? Gravity.LEFT : Gravity.RIGHT);
