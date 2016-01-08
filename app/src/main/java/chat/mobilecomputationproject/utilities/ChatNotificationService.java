@@ -9,10 +9,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.Uri;
 import android.os.IBinder;
 
 import chat.mobilecomputationproject.R;
+import chat.mobilecomputationproject.activities.chat_room.ChatRoomActivity;
+import chat.mobilecomputationproject.database.data_objects.ChatRoom;
 
 /**
  * Inspired on the provided course materials, all credit goes to professor Tiago Cruz.
@@ -24,6 +25,8 @@ public class ChatNotificationService extends Service {
     public final static String STOP_SERVICE_BROADCAST_KEY = "StopServiceBroadcastKey";
     public final static int RQS_STOP_SERVICE = 1;
 
+    private ChatRoom chatRoom;
+
     NotifyServiceReceiver notifyServiceReceiver;
 
     @Override
@@ -34,21 +37,20 @@ public class ChatNotificationService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+
+        chatRoom = (ChatRoom) intent.getSerializableExtra("" + ChatRoom.class);
+
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(ACTION);
         registerReceiver(notifyServiceReceiver, intentFilter);
 
         // Send Notification
         Context context = getApplicationContext();
-        String notificationTitle = "Super Notification!";
-        String notificationText = "Fun stuff";
+        String notificationTitle = "New messages @"+ chatRoom.getName();
+        String notificationText = "Head on over to there to check them out." ;
 
-        Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.slowbro.org/"));
-
-        /*
         Intent myIntent = new Intent(context, ChatRoomActivity.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-        */
 
         PendingIntent pendingIntent
                 = PendingIntent.getActivity(getBaseContext(),
@@ -92,5 +94,4 @@ public class ChatNotificationService extends Service {
             }
         }
     }
-
 }

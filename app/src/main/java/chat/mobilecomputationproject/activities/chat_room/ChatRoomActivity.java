@@ -128,6 +128,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
                 // call the notification service for the message
                 Intent intent = new Intent(ChatRoomActivity.this, ChatNotificationService.class);
+                intent.putExtra("" + ChatRoom.class, chatRoom);
                 startService(intent);
 
             } else {
