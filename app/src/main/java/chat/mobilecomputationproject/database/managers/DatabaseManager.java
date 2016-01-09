@@ -3,7 +3,6 @@ package chat.mobilecomputationproject.database.managers;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class DatabaseManager extends SQLiteOpenHelper {
 
@@ -33,11 +32,13 @@ public class DatabaseManager extends SQLiteOpenHelper {
         try{
             db = SQLiteDatabase.openDatabase(DATABASE_NAME, null, SQLiteDatabase.OPEN_READONLY);
         } catch (Exception e){
-            db.execSQL("CREATE TABLE " + UserTableManager.USER + " ( " + UserTableManager.USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            db.execSQL("CREATE TABLE " + UserTableManager.USER + " ( "
+                    + UserTableManager.USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + UserTableManager.USERNAME + " TEXT)");
 
             // chat table creation
-            db.execSQL("CREATE TABLE " + ChatTableManager.CHAT + " ( " + ChatTableManager.MESSAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            db.execSQL("CREATE TABLE " + ChatTableManager.CHAT + " ( "
+                    + ChatTableManager.MESSAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + UserTableManager.USERNAME + " TEXT, "
                     + ChatTableManager.MESSAGE + " TEXT, "
                     + ChatTableManager.CHAT_ID + " INTEGER, "
