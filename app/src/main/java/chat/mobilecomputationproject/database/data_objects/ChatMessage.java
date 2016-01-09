@@ -7,24 +7,18 @@ import java.util.Date;
  */
 public class ChatMessage {
 
-    private long userId;
-    private String username;
+    private ChatUser user;
     private String message;
     private Date timestamp;
 
-    public ChatMessage(long userId, String username, String message, Date timestamp) {
-        this.userId = userId;
-        this.username = username;
+    public ChatMessage(ChatUser user, String message, Date timestamp) {
+        this.user = user;
         this.message = message;
         this.timestamp = timestamp;
     }
 
-    public long getUserId() {
-        return userId;
-    }
-
-    public String getUsername() {
-        return username;
+    public ChatUser getUser() {
+        return user;
     }
 
     public String getMessage() {

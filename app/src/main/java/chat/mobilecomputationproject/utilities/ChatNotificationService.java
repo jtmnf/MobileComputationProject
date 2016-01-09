@@ -46,8 +46,8 @@ public class ChatNotificationService extends Service {
 
         // Send Notification
         Context context = getApplicationContext();
-        String notificationTitle = "New messages @"+ chatRoom.getName();
-        String notificationText = "Head on over to there to check them out." ;
+        String notificationTitle = "New messages @ "+ chatRoom.getName();
+        String notificationText = "Head over there to check them out." ;
 
         Intent myIntent = new Intent(context, ChatRoomActivity.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
