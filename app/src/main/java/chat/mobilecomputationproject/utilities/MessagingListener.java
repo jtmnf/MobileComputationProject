@@ -29,7 +29,10 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GcmListenerService;
 
+import java.util.Objects;
+
 import chat.mobilecomputationproject.R;
+import chat.mobilecomputationproject.activities.chat_room.ChatMessage;
 import chat.mobilecomputationproject.activities.chat_room.ChatRoomActivity;
 
 public class MessagingListener extends GcmListenerService {
@@ -52,27 +55,24 @@ public class MessagingListener extends GcmListenerService {
      */
     @Override
     public void onMessageReceived(String from, Bundle data) {
-        String message = data.getString("message");
-        String username = data.getString("name");
-        String id = data.getString("id");
-        String date = data.getString("date");
+        ChatMessage chatMessage = (ChatMessage) data.get("message");
 
-        new ReceiveMessage().execute(message, username, id, date);
+        new ReceiveMessage().execute(chatMessage);
     }
 
-    class ReceiveMessage extends AsyncTask<String, Void, String> {
+    class ReceiveMessage extends AsyncTask<ChatMessage, Void, String> {
         @Override
-        protected String doInBackground(String... params) {
-            sendNotification(params[0], params[1], params[2], params[3]);
+        protected String doInBackground(ChatMessage... params) {
+            sendNotification(params[0]);
             return null;
         }
 
-        private void sendNotification(final String message, final String username, final String id, final String date) {
+        private void sendNotification(final ChatMessage chatMessage) {
             if (chatRoomActivity != null) {
                 chatRoomActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        chatRoomActivity.receiveMessage(message, username, id, date);
+                        chatRoomActivity.receiveMessage(chatMessage);
                     }
                 });
             }

@@ -124,10 +124,12 @@ public class ChatRoomActivity extends AppCompatActivity {
         DateFormat df = new SimpleDateFormat("h:mm a - dd/MM/yyyy");
         String date = df.format(Calendar.getInstance().getTime());
 
-        adp.add(new ChatMessage(false, message,chatUser.getUsername(),date));
+        ChatMessage chatMessage = new ChatMessage(false, message, chatUser.getUsername(), date, String.valueOf(chatRoom.getId()));
+
+        adp.add(chatMessage);
         chatText.setText("");
 
-        messagingSender.sendMessage(message, chatUser.getUsername(), chatRoom.getId(), date);
+        messagingSender.sendMessage(chatMessage);
         return true;
     }
 
@@ -150,15 +152,16 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
     }
 
-    public void receiveMessage(String message, String username, String id, String date){
-
+    public void receiveMessage(ChatMessage chatMessage){
         // handle the message database-wise
-        databaseManager.getChatTableManager().addChatMessage(username, message, Integer.parseInt(id), date);
+        databaseManager.getChatTableManager().addChatMessage(chatMessage.getUserName(), chatMessage.getMessage(), Integer.parseInt(chatMessage.getRoomID()), chatMessage.getDate());
 
         // display message
-        if(id.equals(String.valueOf(chatRoom.getId()))) {
-            if (!username.equals(chatUser.getUsername())) {
-                adp.add(new ChatMessage(true, message, username, date));
+        if(chatMessage.getRoomID().equals(String.valueOf(chatRoom.getId()))) {
+            if (!chatMessage.getUserName().equals(chatUser.getUsername())) {
+
+                chatMessage.setMySide(true);
+                adp.add(chatMessage);
 
                 // call the notification service for the message
                 Intent intent = new Intent(ChatRoomActivity.this, ChatNotificationService.class);

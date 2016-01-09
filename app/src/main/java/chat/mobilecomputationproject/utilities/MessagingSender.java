@@ -10,27 +10,28 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Objects;
+
 import org.apache.commons.io.IOUtils;
+
+import chat.mobilecomputationproject.activities.chat_room.ChatMessage;
 
 public class MessagingSender {
 
     private static String API_KEY = "AIzaSyBbzKKCuyJCm4DEM1PWnrCbKtmlC2sNMmE";
 
-    public void sendMessage(String message, String username, long id, String date) {
-        new SendingMessageAsync().execute(message, username, String.valueOf(id), date);
+    public void sendMessage(ChatMessage chatMessage) {
+        new SendingMessageAsync().execute(chatMessage);
     }
 
-    class SendingMessageAsync extends AsyncTask<String, Void, String>{
+    class SendingMessageAsync extends AsyncTask<ChatMessage, Void, String>{
 
         @Override
-        protected String doInBackground(String... params) {
+        protected String doInBackground(ChatMessage... params) {
             try {
                 JSONObject jGcmData = new JSONObject();
                 JSONObject jData = new JSONObject();
                 jData.put("message", params[0]);
-                jData.put("name", params[1]);
-                jData.put("id", params[2]);
-                jData.put("date", params[3]);
 
                 jGcmData.put("to", "/topics/global");
 
