@@ -71,14 +71,6 @@ public class ChatRoomActivity extends AppCompatActivity {
         //adaptador para a lista de mensagens
         adp = new ChatArrayAdapter(getApplicationContext(), R.layout.chat_message, msg);
 
-        //colocacao de um listener no botao
-        send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendChatMessage();
-            }
-        });
-
         //Scroll automatico sempre que surgir uma nova mensagem
         list.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
 
@@ -123,7 +115,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         sendBroadcast(intent);
     }
 
-    private boolean sendChatMessage() {
+    public void sendChatMessage(View view) {
         String message = chatText.getText().toString();
 
         DateFormat df = new SimpleDateFormat("h:mm a - dd/MM/yyyy");
@@ -135,7 +127,6 @@ public class ChatRoomActivity extends AppCompatActivity {
         chatText.setText("");
 
         messagingSender.sendMessage(chatMessage);
-        return true;
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {

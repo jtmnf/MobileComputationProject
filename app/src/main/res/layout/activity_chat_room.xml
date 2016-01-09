@@ -20,8 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:orientation="vertical"
-    />
+        android:orientation="vertical"/>
 
     <EditText
         android:id="@+id/chat"
@@ -39,7 +38,8 @@
         android:id="@+id/btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Send"
+        android:text="@string/send_message"
+        android:onClick="sendChatMessage"
         android:layout_alignBottom="@+id/chat"
         android:layout_alignParentRight="true"
     />

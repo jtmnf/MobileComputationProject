@@ -58,6 +58,7 @@ public class SplashscreenActivity extends AppCompatActivity {
                     parent.runOnUiThread(new Runnable() {
                         public void run() {
                             Toast.makeText(parent.getBaseContext(), R.string.token_problem, Toast.LENGTH_LONG).show();
+                            finish();
                         }
                     });
                 }

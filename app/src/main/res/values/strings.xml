@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">MobileComputationProject</string>
+    <string name="app_name">Mobile Computation Project</string>
+    <string name="name">ChatWithFriends</string>
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
@@ -32,6 +33,8 @@
     <string name="error_invalid_description">Invalid description.</string>
     <string name="error_creating_chat_room">Error creating chat room.</string>
     <string name="error_registering_account">Error registering account.</string>
+
+    <string name="send_message">Send</string>
 
     <string name="bacon">Bacon ipsum dolor amet t-bone bresaola brisket corned beef tail shank pork. Capicola ground round meatloaf pork loin andouille porchetta ball tip meatball. Corned beef filet mignon beef pork frankfurter, cow fatback porchetta meatball. Ribeye venison pig jerky shankle bresaola turkey beef. Turducken landjaeger ham hock filet mignon, bacon strip steak turkey pancetta beef ribs tongue venison cupim. Swine short loin salami beef ribs cupim leberkas sausage ham beef pancetta. Shoulder salami shank swine prosciutto.</string>
 
