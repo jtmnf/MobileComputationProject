@@ -38,7 +38,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     private ListView list;
     private EditText chatText;
     private Button send;
-    private List<ChatMessage> msg= new ArrayList<ChatMessage>();
+    private List<ChatMessage> msg = new ArrayList<ChatMessage>();
 
     // Messaging Handler
     private MessagingSender messagingSender;
@@ -58,7 +58,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         messagingSender = new MessagingSender();
         new MessagingListener(this);
 
-		chatRoom = (ChatRoom) getIntent().getSerializableExtra("" + ChatRoom.class);
+        chatRoom = (ChatRoom) getIntent().getSerializableExtra("" + ChatRoom.class);
         chatUser = (ChatUser) getIntent().getSerializableExtra("" + ChatUser.class);
 
         setTitle(chatRoom.getName());
@@ -84,6 +84,11 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         //insercao do adaptador na lista
         list.setAdapter(adp);
+
+        //Send a message when a user enter
+        DateFormat df = new SimpleDateFormat("h:mm a - dd/MM/yyyy");
+        String date = df.format(Calendar.getInstance().getTime());
+        messagingSender.sendMessage(new ChatMessage(false, "*" + chatUser.getUsername() + " entered the chat*", chatUser.getUsername(), date, String.valueOf(chatRoom.getId())));
     }
 
     @Override
@@ -133,31 +138,33 @@ public class ChatRoomActivity extends AppCompatActivity {
         return true;
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent)	{
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        if (resultCode==RESULT_OK)	{
-            if (requestCode==123){
+        if (resultCode == RESULT_OK) {
+            if (requestCode == 123) {
                 String theme = intent.getStringExtra("theme");
 
-                if(theme.equals("1")){
+                if (theme.equals("1")) {
                     adp.setTheme(1);
                 }
-                if(theme.equals("2")){
+                if (theme.equals("2")) {
                     adp.setTheme(2);
                 }
-                if(theme.equals("3")){
+                if (theme.equals("3")) {
                     adp.setTheme(3);
                 }
+
+                adp.notifyDataSetChanged();
             }
         }
     }
 
-    public void receiveMessage(ChatMessage chatMessage){
+    public void receiveMessage(ChatMessage chatMessage) {
         // handle the message database-wise
         databaseManager.getChatTableManager().addChatMessage(chatMessage.getUserName(), chatMessage.getMessage(), Integer.parseInt(chatMessage.getRoomID()), chatMessage.getDate());
 
         // display message
-        if(chatMessage.getRoomID().equals(String.valueOf(chatRoom.getId()))) {
+        if (chatMessage.getRoomID().equals(String.valueOf(chatRoom.getId()))) {
             if (!chatMessage.getUserName().equals(chatUser.getUsername())) {
 
                 chatMessage.setMySide(true);

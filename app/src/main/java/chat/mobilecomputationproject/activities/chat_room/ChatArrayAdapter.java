@@ -78,6 +78,4 @@ public class ChatArrayAdapter extends ArrayAdapter<ChatMessage>{
         headChat.setText(messageObj.getUserName() + " | " + messageObj.getDate());
         return v;
     }
-
-
 }
