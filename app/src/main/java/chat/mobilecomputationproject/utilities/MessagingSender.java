@@ -10,7 +10,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Objects;
 
 import org.apache.commons.io.IOUtils;
 
@@ -29,9 +28,14 @@ public class MessagingSender {
         @Override
         protected String doInBackground(ChatMessage... params) {
             try {
+                ChatMessage chatMessage = params[0];
                 JSONObject jGcmData = new JSONObject();
                 JSONObject jData = new JSONObject();
-                jData.put("message", params[0]);
+
+                jData.put("message", chatMessage.getMessage());
+                jData.put("date", chatMessage.getDate());
+                jData.put("id", chatMessage.getRoomID());
+                jData.put("username", chatMessage.getUserName());
 
                 jGcmData.put("to", "/topics/global");
 
@@ -55,8 +59,10 @@ public class MessagingSender {
                 //System.out.println(resp);
                 //System.out.println("Check your device/emulator for notification or logcat for confirmation of the receipt of the GCM message.");
             } catch (JSONException e) {
+                e.printStackTrace();
                 return "RESULT_NO_OK";
             } catch (IOException e){
+                e.printStackTrace();
                 return "RESULT_NO_OK";
             }
 

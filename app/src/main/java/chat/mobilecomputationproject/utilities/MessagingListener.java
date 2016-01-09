@@ -55,7 +55,13 @@ public class MessagingListener extends GcmListenerService {
      */
     @Override
     public void onMessageReceived(String from, Bundle data) {
-        ChatMessage chatMessage = (ChatMessage) data.get("message");
+        ChatMessage chatMessage = new ChatMessage(
+                false,
+                data.getString("message"),
+                data.getString("username"),
+                data.getString("date"),
+                data.getString("id")
+        );
 
         new ReceiveMessage().execute(chatMessage);
     }
