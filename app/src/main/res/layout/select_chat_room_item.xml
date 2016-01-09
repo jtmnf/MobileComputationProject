@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceListItem"
-            android:textColor="@color/colorPrimary"
+            android:textColor="#16adff"
             android:text="@string/bacon"
             android:singleLine="true"
             android:maxLines="1"
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceListItemSmall"
-            android:textColor="@color/colorAccent"
+            android:textColor="#ffffff"
             android:text="@string/bacon"
             android:maxLines="2"
             android:ellipsize="end"/>

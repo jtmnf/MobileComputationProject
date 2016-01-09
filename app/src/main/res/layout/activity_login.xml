@@ -8,7 +8,9 @@
               android:paddingLeft="@dimen/activity_horizontal_margin"
               android:paddingRight="@dimen/activity_horizontal_margin"
               android:paddingTop="@dimen/activity_vertical_margin"
-              tools:context=".activities.login.LoginActivity">
+              tools:context=".activities.login.LoginActivity"
+    android:background="#303133"
+    android:weightSum="1">
 
     <!-- Login progress -->
     <ProgressBar
@@ -19,44 +21,64 @@
         android:layout_marginBottom="8dp"
         android:visibility="gone"/>
 
+    <LinearLayout
+        android:id="@+id/email_login_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/transparent"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_weight="0.76">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_username"
+                android:imeActionId="@+id/login"
+                android:imeActionLabel="@string/action_sign_in"
+                android:imeOptions="actionUnspecified"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="#ffffff"
+                android:textColorHighlight="#16adff"
+                android:textColorHint="#16adff"
+                android:textColorLink="#16adff"
+                android:backgroundTint="#16adff"
+                android:backgroundTintMode="src_over"
+                android:breakStrategy="high_quality"
+                android:shadowColor="#363535"
+                android:textSize="50px"
+                android:autoText="false"
+                android:allowUndo="false"
+                android:foregroundTint="#16adff"
+                android:foregroundTintMode="src_over"
+                android:maxLength="20"
+                android:textAlignment="center" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/sign_in_button"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/action_sign_in"
+            android:textStyle="bold"
+            android:textSize="30px" />
+
+    </LinearLayout>
+
     <ScrollView
         android:id="@+id/register_form"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="40dp">
 
-        <LinearLayout
-            android:id="@+id/email_login_form"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/username"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/prompt_username"
-                    android:imeActionId="@+id/login"
-                    android:imeActionLabel="@string/action_sign_in"
-                    android:imeOptions="actionUnspecified"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:singleLine="true"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-            <Button
-                android:id="@+id/sign_in_button"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in"
-                android:textStyle="bold"/>
-
-        </LinearLayout>
     </ScrollView>
 </LinearLayout>

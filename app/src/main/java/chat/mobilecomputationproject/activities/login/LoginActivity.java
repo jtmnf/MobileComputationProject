@@ -48,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         selectedChatRoom = (ChatRoom) getIntent().getSerializableExtra("" + ChatRoom.class);
 
         databaseManager = new DatabaseManager(this);

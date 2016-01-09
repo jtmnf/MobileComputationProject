@@ -14,7 +14,6 @@ public class SelectChatRoomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_chat_room);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
     }
 
 }
