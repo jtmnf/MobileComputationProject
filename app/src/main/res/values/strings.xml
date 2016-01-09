@@ -38,6 +38,6 @@
     <string name="action_change">Change Theme</string>
     <string name="title_activity_theme">ThemeActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
-	<string name="chat_room">Chat Room</string>
+    <string name="chat_room">Chat Room</string>
 
 </resources>
