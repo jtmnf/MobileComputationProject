@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -46,6 +47,9 @@ public class ChatRoomActivity extends AppCompatActivity {
     // Database Handler
     private DatabaseManager databaseManager;
     private SQLiteDatabase database;
+
+    // Back button
+    private boolean backButtonPress = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,9 +159,8 @@ public class ChatRoomActivity extends AppCompatActivity {
         databaseManager.getChatTableManager().addChatMessage(chatMessage.getUserName(), chatMessage.getMessage(), Integer.parseInt(chatMessage.getRoomID()), chatMessage.getDate());
 
         // display message
-        if (chatMessage.getRoomID().equals(String.valueOf(chatRoom.getId()))) {
+        if (!backButtonPress && chatMessage.getRoomID().equals(String.valueOf(chatRoom.getId()))) {
             if (!chatMessage.getUserName().equals(chatUser.getUsername())) {
-
                 chatMessage.setMySide(true);
                 adp.add(chatMessage);
 
@@ -170,5 +173,14 @@ public class ChatRoomActivity extends AppCompatActivity {
                 Log.i("ChatRoomMessage", "You sended a message that was delivered correctly!");
             }
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            backButtonPress = true;
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 }

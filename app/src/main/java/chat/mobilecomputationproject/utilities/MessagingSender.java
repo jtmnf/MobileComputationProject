@@ -1,6 +1,7 @@
 package chat.mobilecomputationproject.utilities;
 
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -58,11 +59,7 @@ public class MessagingSender {
                 String resp = IOUtils.toString(inputStream);
                 //System.out.println(resp);
                 //System.out.println("Check your device/emulator for notification or logcat for confirmation of the receipt of the GCM message.");
-            } catch (JSONException e) {
-                e.printStackTrace();
-                return "RESULT_NO_OK";
-            } catch (IOException e){
-                e.printStackTrace();
+            } catch (Exception e) {
                 return "RESULT_NO_OK";
             }
 
