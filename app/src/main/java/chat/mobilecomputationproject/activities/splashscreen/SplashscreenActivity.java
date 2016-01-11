@@ -57,13 +57,6 @@ public class SplashscreenActivity extends AppCompatActivity {
                 if (sentToken) {
                     isTokenHere = true;
                     Log.i("Token", "Received");
-                } else {
-                    parent.runOnUiThread(new Runnable() {
-                        public void run() {
-                            Toast.makeText(parent.getBaseContext(), R.string.token_problem, Toast.LENGTH_LONG).show();
-                            finish();
-                        }
-                    });
                 }
             }
         };
@@ -84,9 +77,18 @@ public class SplashscreenActivity extends AppCompatActivity {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                if (isNetworkAvailable() && isTokenHere) {
+                if (isNetworkAvailable()) {
                     Log.i("Network Status", "Network Available");
-                    goToSelectChatRoomActivity();
+                    if(isTokenHere){
+                        goToSelectChatRoomActivity();
+                    }
+                    else{
+                        parent.runOnUiThread(new Runnable() {
+                            public void run() {
+                                Toast.makeText(parent.getBaseContext(), R.string.token_not_received, Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
 
                 } else {
                     Log.i("Network Status", "Network Not Available");
