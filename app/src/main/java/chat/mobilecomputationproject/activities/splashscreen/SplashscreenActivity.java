@@ -36,6 +36,8 @@ public class SplashscreenActivity extends AppCompatActivity {
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private static SplashscreenActivity parent;
 
+    private boolean isTokenHere = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +55,7 @@ public class SplashscreenActivity extends AppCompatActivity {
                 boolean sentToken = sharedPreferences.getBoolean("sentTokenToServer", false);
 
                 if (sentToken) {
+                    isTokenHere = true;
                     Log.i("Token", "Received");
                 } else {
                     parent.runOnUiThread(new Runnable() {
@@ -81,7 +84,7 @@ public class SplashscreenActivity extends AppCompatActivity {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                if (isNetworkAvailable()) {
+                if (isNetworkAvailable() && isTokenHere) {
                     Log.i("Network Status", "Network Available");
                     goToSelectChatRoomActivity();
 

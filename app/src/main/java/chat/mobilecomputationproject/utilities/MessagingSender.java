@@ -1,18 +1,14 @@
 package chat.mobilecomputationproject.utilities;
 
 import android.os.AsyncTask;
-import android.widget.Toast;
 
-import org.json.JSONException;
+import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
-import org.apache.commons.io.IOUtils;
 
 import chat.mobilecomputationproject.activities.chat_room.ChatMessage;
 

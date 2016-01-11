@@ -1,16 +1,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:gravity="center_horizontal"
-              android:orientation="vertical"
-              android:paddingBottom="@dimen/activity_vertical_margin"
-              android:paddingLeft="@dimen/activity_horizontal_margin"
-              android:paddingRight="@dimen/activity_horizontal_margin"
-              android:paddingTop="@dimen/activity_vertical_margin"
-              tools:context=".activities.login.LoginActivity"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="#303133"
-    android:weightSum="1">
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:weightSum="1"
+    tools:context=".activities.login.LoginActivity">
 
     <!-- Login progress -->
     <ProgressBar
@@ -19,16 +19,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/email_login_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_weight="0.76"
         android:background="@android:color/transparent"
         android:gravity="center_vertical|center_horizontal"
-        android:layout_weight="0.76">
+        android:orientation="vertical">
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -38,27 +38,28 @@
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:allowUndo="false"
+                android:autoText="false"
+                android:backgroundTint="#16adff"
+                android:backgroundTintMode="src_over"
+                android:breakStrategy="high_quality"
+                android:foregroundTint="#16adff"
+                android:foregroundTintMode="src_over"
+                android:gravity="center_vertical|center_horizontal"
                 android:imeActionId="@+id/login"
                 android:imeActionLabel="@string/action_sign_in"
                 android:imeOptions="actionUnspecified"
-                android:inputType="textEmailAddress"
+                android:inputType="text"
+                android:maxLength="20"
                 android:maxLines="1"
+                android:shadowColor="#363535"
                 android:singleLine="true"
+                android:textAlignment="center"
                 android:textColor="#ffffff"
                 android:textColorHighlight="#16adff"
                 android:textColorHint="#16adff"
                 android:textColorLink="#16adff"
-                android:backgroundTint="#16adff"
-                android:backgroundTintMode="src_over"
-                android:breakStrategy="high_quality"
-                android:shadowColor="#363535"
-                android:textSize="50px"
-                android:autoText="false"
-                android:allowUndo="false"
-                android:foregroundTint="#16adff"
-                android:foregroundTintMode="src_over"
-                android:maxLength="20"
-                android:textAlignment="center" />
+                android:textSize="50px" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -67,10 +68,9 @@
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:text="@string/action_sign_in"
-            android:textStyle="bold"
-            android:textSize="30px" />
+            android:textSize="20px"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

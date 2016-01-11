@@ -14,7 +14,6 @@ import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -85,6 +84,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         DateFormat df = new SimpleDateFormat("h:mm a - dd/MM/yyyy");
         String date = df.format(Calendar.getInstance().getTime());
         messagingSender.sendMessage(new ChatMessage(false, "*" + chatUser.getUsername() + " entered the chat*", chatUser.getUsername(), date, String.valueOf(chatRoom.getId())));
+
     }
 
     @Override
@@ -122,15 +122,19 @@ public class ChatRoomActivity extends AppCompatActivity {
     public void sendChatMessage(View view) {
         String message = chatText.getText().toString();
 
-        DateFormat df = new SimpleDateFormat("h:mm a - dd/MM/yyyy");
-        String date = df.format(Calendar.getInstance().getTime());
+        if (message.length() > 0) {
+            DateFormat df = new SimpleDateFormat("h:mm a - dd/MM/yyyy");
+            String date = df.format(Calendar.getInstance().getTime());
 
-        ChatMessage chatMessage = new ChatMessage(false, message, chatUser.getUsername(), date, String.valueOf(chatRoom.getId()));
+            ChatMessage chatMessage = new ChatMessage(false, message, chatUser.getUsername(), date, String.valueOf(chatRoom.getId()));
 
-        adp.add(chatMessage);
-        chatText.setText("");
+            adp.add(chatMessage);
+            chatText.setText("");
 
-        messagingSender.sendMessage(chatMessage);
+            messagingSender.sendMessage(chatMessage);
+        } else {
+            chatText.setError(getString(R.string.empty_messages));
+        }
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -177,7 +181,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_BACK){
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             backButtonPress = true;
         }
 
