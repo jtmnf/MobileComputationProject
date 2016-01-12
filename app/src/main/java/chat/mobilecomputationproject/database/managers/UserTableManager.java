@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 /**
  * Created by aclima on 26/12/15.
+ *
+ * Class that manages the Chat table in the DB.
  */
 public class UserTableManager {
 
@@ -22,6 +24,12 @@ public class UserTableManager {
         this.dbm = dbm;
     }
 
+    /**
+     * Transactional function to insert a user in the local DB.
+     *
+     * @param username
+     * @return
+     */
     public boolean addUser(String username){
 
         boolean success;

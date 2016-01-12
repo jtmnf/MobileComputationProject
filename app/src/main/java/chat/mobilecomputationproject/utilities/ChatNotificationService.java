@@ -35,6 +35,16 @@ public class ChatNotificationService extends Service {
         super.onCreate();
     }
 
+    /**
+     * Prepares a sticky notification service for the chart room and issues one notification
+     * addressing the new content. This notification will focus the ChatRoomActivity and
+     * bring it to the front.
+     *
+     * @param intent
+     * @param flags
+     * @param startId
+     * @return
+     */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -81,6 +91,9 @@ public class ChatNotificationService extends Service {
         return null;
     }
 
+    /**
+     * Disables the notification service and removes notifications from the notification bar.
+     */
     public class NotifyServiceReceiver extends BroadcastReceiver{
 
         @Override

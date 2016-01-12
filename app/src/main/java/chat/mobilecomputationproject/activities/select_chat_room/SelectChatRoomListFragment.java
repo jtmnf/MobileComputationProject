@@ -24,11 +24,16 @@ public class SelectChatRoomListFragment extends ListFragment {
         return inflater.inflate(R.layout.fragment_select_chat_room, container, false);
     }
 
+    /**
+     * Uses the custom Adapter to create the item views and populates the list fragment.
+     * Each item is clickable and will redirect the user to login screen of the selected chat room.
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
 
-        // TODO: get the info here
         chatRooms = new DefaultChatRooms().getItems();
 
         ChatRoomAdapter adapter = new ChatRoomAdapter(getActivity(), R.layout.select_chat_room_item, chatRooms);

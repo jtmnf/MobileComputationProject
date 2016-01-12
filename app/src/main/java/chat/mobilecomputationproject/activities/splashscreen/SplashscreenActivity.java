@@ -12,7 +12,6 @@ import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -66,6 +65,10 @@ public class SplashscreenActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Check if the network and local broadcaster are still cooperating nicely, otherwise
+     * spooky warning Toasts are provided to the user.
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -102,6 +105,9 @@ public class SplashscreenActivity extends AppCompatActivity {
         }, SPLASHSCREEN_DELAY);
     }
 
+    /**
+     * Starts the next activity (SelectChatRoomActivity) and finishes the current one
+     */
     private void goToSelectChatRoomActivity() {
         final Intent intent = new Intent(this, SelectChatRoomActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -110,6 +116,10 @@ public class SplashscreenActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Checks if any form of network (WIFI, Mobile data) is available and if we're connected to it
+     * @return network usefulness boolean
+     */
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();

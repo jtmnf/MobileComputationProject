@@ -25,9 +25,14 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
 
+    /**
+     * Creates the tables (Chat and User) that will hold information during the user's use of the application,
+     * for ease fo access and storing.
+     *
+     * @param db
+     */
     private void createDatabase(SQLiteDatabase db){
         try{
             db = SQLiteDatabase.openDatabase(DATABASE_NAME, null, SQLiteDatabase.OPEN_READONLY);

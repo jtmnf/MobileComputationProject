@@ -169,7 +169,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
             try {
-                // Simulate network access.
+                // Simulate network access and look professional
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 return false;

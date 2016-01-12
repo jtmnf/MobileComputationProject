@@ -29,6 +29,14 @@ public class ChatRoomAdapter extends ArrayAdapter<ChatRoom> {
         this.objects = objects;
     }
 
+    /**
+     * Creates a custom View for each ChatRoom item that will be displayed in the ListFragment.
+     *
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 

@@ -5,6 +5,9 @@ import java.util.List;
 
 import chat.mobilecomputationproject.database.data_objects.ChatRoom;
 
+/**
+ * List of pre-defined chat rooms that a user can join.
+ */
 public class DefaultChatRooms {
 
     public static final List<ChatRoom> ITEMS = new ArrayList<ChatRoom>();
