@@ -44,6 +44,7 @@
         <activity
             android:name=".activities.chat_room.ChatRoomActivity"
             android:label="@string/chat_room"
+            android:screenOrientation="portrait"
             android:launchMode="singleTop" />
 
         <!-- Chat Message Notification Service -->
