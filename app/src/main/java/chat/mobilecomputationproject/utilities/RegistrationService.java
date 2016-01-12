@@ -31,6 +31,10 @@ import java.io.IOException;
 
 import chat.mobilecomputationproject.R;
 
+/**
+ * Inspired on the provided course materials, all credit goes to professor Tiago Cruz.
+ * GCM tutorial - Google
+ */
 public class RegistrationService extends IntentService {
 
     private static final String TAG = "RegIntentService";
