@@ -1,5 +1,8 @@
 package chat.mobilecomputationproject.activities.chat_room;
 
+/**
+ * Class that defines a chat message
+ */
 public class ChatMessage {
     private boolean mySide;
     private String message;

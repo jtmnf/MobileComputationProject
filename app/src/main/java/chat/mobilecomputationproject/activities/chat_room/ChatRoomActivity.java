@@ -29,6 +29,10 @@ import chat.mobilecomputationproject.utilities.ChatNotificationService;
 import chat.mobilecomputationproject.utilities.MessagingListener;
 import chat.mobilecomputationproject.utilities.MessagingSender;
 
+
+/**
+ * Activity that controls the chat interaction
+ */
 public class ChatRoomActivity extends AppCompatActivity {
 
     private ChatRoom chatRoom;
@@ -66,27 +70,40 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         setTitle(chatRoom.getName());
 
-        //buscar componentes graficos
+        /**
+         * get graphic components
+         */
         send = (Button) findViewById(R.id.btn);
         list = (ListView) findViewById(R.id.listview);
         chatText = (EditText) findViewById(R.id.chat);
 
-        //adaptador para a lista de mensagens
+        /**
+         * Adapter to the list of messages
+         */
         adp = new ChatArrayAdapter(getApplicationContext(), R.layout.chat_message, msg);
 
-        //Scroll automatico sempre que surgir uma nova mensagem
+        /**
+         * Automatic scrool every time that a new message appears
+         */
         list.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
 
-        //insercao do adaptador na lista
+        /**
+         * Put the adapter in the list
+         */
         list.setAdapter(adp);
 
-        //Send a message when a user enter
+        /**
+         * Send a message when a user enter
+         */
         DateFormat df = new SimpleDateFormat("h:mm a - dd/MM/yyyy");
         String date = df.format(Calendar.getInstance().getTime());
         messagingSender.sendMessage(new ChatMessage(false, "*" + chatUser.getUsername() + " entered the chat*", chatUser.getUsername(), date, String.valueOf(chatRoom.getId())));
 
     }
 
+    /**
+     * Update the action bar
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -95,9 +112,15 @@ public class ChatRoomActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+
+    /**
+     * When clicked to change the theme
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Take appropriate action for each action item click
+        /**
+         *  Take appropriate action for each action item click
+         */
         switch (item.getItemId()) {
             case R.id.action_change:
                 Intent intent = new Intent(this, ThemeActivity.class);
@@ -108,17 +131,23 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Disable the notifications for this chat room when we leave
+     */
     @Override
     public void onDestroy() {
         super.onDestroy();
 
-        // disable the notifications for this chat room when we leave
         Intent intent = new Intent();
         intent.setAction(ChatNotificationService.ACTION);
         intent.putExtra(ChatNotificationService.STOP_SERVICE_BROADCAST_KEY, ChatNotificationService.RQS_STOP_SERVICE);
         sendBroadcast(intent);
     }
 
+
+    /**
+     * Send a Chat Message
+     */
     public void sendChatMessage(View view) {
         String message = chatText.getText().toString();
 
@@ -137,6 +166,9 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Receive the activityTheme response and change the theme
+     */
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
         if (resultCode == RESULT_OK) {
@@ -158,11 +190,19 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Responsible for handling the received messages
+     */
     public void receiveMessage(ChatMessage chatMessage) {
-        // handle the message database-wise
+
+        /**
+         * Handle the message database-wise
+         */
         databaseManager.getChatTableManager().addChatMessage(chatMessage.getUserName(), chatMessage.getMessage(), Integer.parseInt(chatMessage.getRoomID()), chatMessage.getDate());
 
-        // display message
+        /**
+         * Display message
+         */
         if (!backButtonPress && chatMessage.getRoomID().equals(String.valueOf(chatRoom.getId()))) {
             if (!chatMessage.getUserName().equals(chatUser.getUsername())) {
                 chatMessage.setMySide(true);
@@ -179,6 +219,10 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
     }
 
+
+    /**
+     * Able to go back
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {

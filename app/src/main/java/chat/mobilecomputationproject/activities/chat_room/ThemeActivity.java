@@ -18,6 +18,9 @@ import android.widget.ImageView;
 
 import chat.mobilecomputationproject.R;
 
+/**
+ * Responsible for display the slider themes
+ */
 public class ThemeActivity extends AppCompatActivity {
 
     /**
@@ -49,6 +52,9 @@ public class ThemeActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        /**
+         * Get click on FloatingActionButton
+         */
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +116,9 @@ public class ThemeActivity extends AppCompatActivity {
             return fragment;
         }
 
+        /**
+         * Set the theme images in the fragments
+         */
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_theme, container, false);
